@@ -6,7 +6,7 @@
     <div class="row topSpacer mx-auto">
       <div
         class="
-          col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 col-12
+          col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12
           mb-5
         "
         v-for="featuredproduct in featuredproducts"

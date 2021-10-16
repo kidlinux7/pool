@@ -6,7 +6,7 @@
           <h6 class="blueTitle">JOIN OUR NEWSLETTER</h6>
           <h4 class="blackHeader">Subscribe to get updated with new offers</h4>
 
-          <form class="row g-0">
+          <form class="row justify-content-center mt-3 g-0">
             <div class="col-auto">
               <input
                 type="email"
@@ -48,5 +48,31 @@ export default {
 .blueCover {
   background-color: rgb(246, 246, 255);
   width: 100%;
+}
+/* SUPER SMALL SIZED DEVICES */
+@media only screen and (max-width: 320px) {
+.blackHeader {
+  font-size: 0.8em;
+}
+.blueTitle {
+  font-family: "Poppins";
+  color: blue;
+  font-weight: bold;
+  font-size: 0.7em;
+}
+}
+
+/* TABLET SIZED DEVICES */
+@media only screen and (max-width: 768px) {
+.blackHeader {
+  font-size: 0.7em;
+}
+.blueTitle {
+  font-family: "Poppins";
+  color: blue;
+  font-weight: bold;
+  font-size: 0.7em;
+}
+
 }
 </style>

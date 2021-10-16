@@ -9,24 +9,24 @@
           class="card mb-3 weeklyDiscount_card weeklyDiscount_card_circle"
           style="max-width: 540px"
         >
-          <div class="row g-0">
+          <div class="row justify-content-center g-0">
             <div class="col-md-4">
               <img
                 src="../assets/gumboots.png"
-                class="img-fluid rounded-start"
+                class="img-fluid rounded-center"
                 alt="..."
               />
             </div>
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="card-body">
                 <h5 class="card-title blueNameTag">Purple Gum Boots</h5>
-                <p class="card-text">
+                <p class="card-text weeklyDiscount_card_text">
                   This is a wider card with supporting text below as a natural
                   lead-in to additional content. This content is a little bit
                   longer.
                 </p>
                 <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                  <small class="text-muted weeklyDiscount_card_text">Last updated 3 mins ago</small>
                 </p>
               </div>
             </div>
@@ -41,24 +41,24 @@
           class="card mb-3 weeklyDiscount_card weeklyDiscount_card_circle"
           style="max-width: 540px"
         >
-          <div class="row g-0">
+          <div class="row justify-content-center g-0">
             <div class="col-md-4">
               <img
                 src="../assets/gumboots.png"
-                class="img-fluid rounded-start"
+                class="img-fluid rounded-center"
                 alt="..."
               />
             </div>
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="card-body">
                 <h5 class="card-title blueNameTag">Purple Gum Boots</h5>
-                <p class="card-text">
+                <p class="card-text weeklyDiscount_card_text">
                   This is a wider card with supporting text below as a natural
                   lead-in to additional content. This content is a little bit
                   longer.
                 </p>
                 <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                  <small class="text-muted weeklyDiscount_card_text">Last updated 3 mins ago</small>
                 </p>
               </div>
             </div>
@@ -101,6 +101,17 @@ export default {
 }
 
 .weeklyDiscount_card_product_image {
-  height: 150px;
+  height: 250px;
+}
+
+/* TABLET SIZED DEVICES */
+@media only screen and (max-width: 768px) {
+  .blueNameTag {
+    font-size: 0.9em;
+  }
+  .weeklyDiscount_card_text {
+    font-size: 0.8em;
+    text-align: left;
+  }
 }
 </style>

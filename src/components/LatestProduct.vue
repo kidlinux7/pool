@@ -94,9 +94,9 @@ export default {
       },
 
       breakpoints: {
-        // 700px and up
-        700: {
-          itemsToShow: 3.5,
+        // 768px and up
+        768: {
+          itemsToShow: 3,
           snapAlign: "center",
         },
         // 1024 and up
@@ -109,7 +109,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .latestProduct:hover {
   /* border-color: whitesmoke; */

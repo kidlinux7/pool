@@ -1,57 +1,49 @@
 <template>
   <div class="container">
-    <!-- <div class="row mt-3"> -->
-      <h3 class="midSectionHeading">Best Selling Products</h3>
-    <Carousel
-      :breakpoints="breakpoints"
-      :settings="settings"
-      :autoplay="2900"
-      :wrap-around="true"
-    >
-          <Slide
-           v-for="bestsellingproduct in bestsellingproducts"
-        v-bind:key="bestsellingproduct.id"
+    <div class="row mx-auto">
+      <h3 style="font-weight: bold; margin-bottom: 30px">Latest Products</h3>
+
+      <div
+        class="
+          col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-6 col-xs-12 col-12
+          mt-4
+          mb-4
+          mx-auto
+        "
+        v-for="storecard in storecards"
+        v-bind:key="storecard.id"
       >
-        <div class="card mx-auto bestSellingProduct  carousel__item" style="width: 18rem">
+        <div class="card mx-auto storeCard" style="width: 18rem">
           <img src="../assets/gumboots.png" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="bestSellingProduct_card_category">
-              {{ bestsellingproduct.category }}
+            <h5 class="storeCard_card_category">
+              {{ storecard.category }}
             </h5>
-            <h5 class="card-title blueNameTag">{{ bestsellingproduct.name }}</h5>
-            <p class="bestSellingProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
-            <br />
-            <p class="bestSellingProduct_card_info">
-              {{ bestsellingproduct.price }}
-            </p>
+            <h5 class="card-title blueNameTag">{{ storecard.name }}</h5>
+            <div>
+              <p class="storeCard_card_ratingStars">⭐⭐⭐⭐⭐</p>
+              <br />
+            </div>
+            <div>
+              <p class="storeCard_card_info">
+                {{ storecard.price }}
+              </p>
+            </div>
             <a href="#" class="btn btn-primary addToCartBtn"
               ><i class="fa-solid fa-cart-plus px-2"> </i>Add to cart</a
             >
           </div>
         </div>
-      
-          </Slide>
-    </Carousel>
-
-
-    <!-- </div> -->
+      </div>
+    </div>
   </div>
 </template>
 <script>
-// If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
-import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide } from "vue3-carousel";
 export default {
-  name: "BestSellingProduct",
-  components: {
-    Carousel,
-    Slide,
-    // Pagination,
-    // Navigation,
-  },
+  name: "StoreCard",
   data() {
     return {
-      bestsellingproducts: [
+      storecards: [
         {
           id: 1,
           category: "Cleaning",
@@ -76,43 +68,25 @@ export default {
           name: "Yellow Boots",
           price: "Tsh 19,810",
         },
-                {
+        {
           id: 5,
-          category: "Fixing",
-          name: "Red Boots",
-          price: "Tsh 22,190",
+          category: "Not Fixing",
+          name: "Yellow Boots",
+          price: "Tsh 21,700",
         },
       ],
-      settings: {
-        itemsToShow: 1,
-        snapAlign: "center",
-      },
-
-      breakpoints: {
-        // 700px and up
-        768: {
-          itemsToShow: 3,
-          snapAlign: "center",
-        },
-        // 1024 and up
-        1024: {
-          itemsToShow: 3,
-          snapAlign: "center",
-        },
-      },
     };
   },
 };
 </script>
-
 <style scoped>
-.bestSellingProduct:hover {
+.storeCard:hover {
   /* border-color: whitesmoke; */
   padding: 3px;
   transition: 0.3s ease-in-out;
   box-shadow: 10px 10px 20px 5px rgb(235, 233, 233);
 }
-.bestSellingProduct_card_category {
+.storeCard_card_category {
   color: rgb(173, 173, 173);
   text-align: left;
   margin-left: 20px;
@@ -122,10 +96,10 @@ export default {
 .cartIcon {
   margin-right: 20px;
 }
-.bestSellingProduct_card_addtocart_text {
+.storeCard_card_addtocart_text {
   font-size: 1.7em;
 }
-.bestSellingProduct_card_addtocart {
+.storeCard_card_addtocart {
   padding: 7px;
   background-color: rgb(41, 41, 255);
   color: white;
@@ -135,27 +109,28 @@ export default {
   margin-right: 20px;
   font-family: "Poppins", sans;
 }
-.bestSellingProduct_card_price {
+.storeCard_card_price {
   font-family: "Poppins";
   font-size: 2.1em;
   font-weight: 900;
   color: #696969;
 }
-.bestSellingProduct_card {
+.storeCard_card {
   height: 300px;
   width: 100;
 }
-.bestSellingProduct_card_image {
+.storeCard_card_image {
   height: 290px;
   padding: 20px;
   width: auto;
 }
-.bestSellingProduct_card_ratingStars {
+.storeCard_card_ratingStars {
   height: 10px;
   margin-left: 70px;
   margin-right: 50px;
   opacity: 0.7;
   float: left;
+  text-align: center;
 }
 .greyNameTag {
   font-weight: 900;
@@ -169,7 +144,7 @@ export default {
   font-family: "Poppins", sans;
   padding: 7px;
 }
-.bestSellingProduct_card_info {
+.storeCard_card_info {
   text-align: center;
   font-family: "Poppins", sans;
   margin-right: 15px;
@@ -178,5 +153,26 @@ export default {
   color: #0000ff;
   font-size: 1.3em;
   font-weight: 900;
+}
+
+/* SUPER SMALL SIZED DEVICES */
+@media only screen and (max-width: 320px) {
+  .card {
+    width: 14 rem !important;
+  }
+  .storeCard {
+    width: 14 rem !important;
+  }
+
+}
+
+/* TABLET SIZED DEVICES */
+@media only screen and (max-width: 768px) {
+  .card {
+    width: 14 rem !important;
+  }
+  .storeCard {
+    width: 14 rem !important;
+  }
 }
 </style>

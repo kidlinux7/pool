@@ -14,12 +14,12 @@
         <div class="card mb-3">
           <img src="../assets/gumboots.png" class="card-img-top" alt="..." />
           <div class="card-body blogCardTitle">
-        <h5 class="card-title text-left">{{blogarticle.title}}</h5>
-            <p class="card-text">
+        <h5 class="card-title text-left blogSectionTitle">{{blogarticle.title}}</h5>
+            <p class="card-text blogSectionDescr">
             {{blogarticle.description}}
             </p>
             <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
+              <small class="text-muted blogSectionTime">Last updated 3 mins ago</small>
             </p>
           </div>
         </div>
@@ -60,5 +60,29 @@ export default {
 <style scoped>
 .blogCardTitle{
     font-family: 'Poppins';
+}
+/* SUPER SMALL SIZED DEVICES */
+@media only screen and (max-width: 320px) {
+.blogSectionTitle{
+  font-size: 0.8em;
+}
+.blogSectionDescr{
+  font-size: 1em;
+}
+
+}
+/* TABLET SIZED DEVICES */
+@media only screen and (max-width: 768px) {
+.blogSectionTitle{
+  font-size: 0.9em;
+
+}
+.blogSectionDescr{
+  font-size: 0.7em;
+}
+.blogSectionTime{
+  font-size: 0.7em;
+  margin-top: 10px;
+}
 }
 </style>

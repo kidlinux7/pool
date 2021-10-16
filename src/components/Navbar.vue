@@ -1,9 +1,9 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light mb-5">
     <div class="container-fluid">
       <div class="navbar-brand" style="font-weight: 800" to="/">💦Pool</div>
       <div
-        class="d-sm-none d-none d-md-block d-lg-block d-xl-block d-xxl-block"
+        class="d-sm-none d-none d-md-none d-lg-block d-xl-block d-xxl-block"
       >
         <button
           class="navbar-toggler"
@@ -39,7 +39,7 @@
   
 
 
-  <div class="d-md-none d-lg-none d-xl-none d-xxl-none">
+  <div class="d-lg-none d-xl-none d-xxl-none">
     <nav class="nav_">
       <a  class="nav__link" href="/"><router-link to="/"></router-link>
         <i class="fa-solid fa-house"></i>

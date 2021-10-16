@@ -97,4 +97,39 @@ export default {
   text-align: left;
   color: rgb(168, 168, 168);
 }
+
+/* SUPER SMALL SIZED DEVICES */
+@media only screen and (max-width: 320px) {
+.footerText{
+  font-size: 0.8em;
+}
+.footerHeading{
+  font-size: 0.9em;
+}
+}
+
+/* TABLET SIZED DEVICES */
+@media only screen and (max-width: 768px) {
+.footerText{
+  font-size: 0.7em;
+}
+.footerHeading{
+  font-size: 0.9em;
+}
+input{
+  padding:5px;
+  width: 140px;
+  height: 35px;
+  font-size: 0.7em;
+  background-color: whitesmoke;
+  margin-top:5px ;
+}
+button{
+  height: 32px;
+  font-size: 0.7em;
+  margin-top: 6px;
+}
+}
+
+
 </style>

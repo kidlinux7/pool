@@ -89,9 +89,27 @@ export default {
   width: 100%;
 }
 
+/* SUPER SMALL SIZED DEVICES */
 @media only screen and (max-width: 320px) {
   .timeUnit {
+    padding: 4px;
+    font-weight: bold;
+    justify-content: center;
+  }
+  .timeValue {
     padding: 7px;
+    font-weight: 900;
+    font-size: 1.5em;
+  }
+}
+
+/* TABLET SIZED DEVICES */
+@media only screen and (max-width: 768px) {
+  .landingHeader{
+    font-size: 1.6em;
+  }
+  .timeUnit {
+    padding: 4px;
     font-weight: bold;
     justify-content: center;
   }
