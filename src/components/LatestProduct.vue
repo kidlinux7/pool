@@ -21,7 +21,7 @@
             <h5 class="latestProduct_card_category">
               {{ latestproduct.category }}
             </h5>
-            <h5 class="card-title blueNameTag">{{ latestproduct.name }}</h5>
+            <h5 class="card-title blueNameTag"><a href=""><router-link to="/ProductDetails">{{ latestproduct.name }}</router-link></a></h5>
             <div>
               <p class="latestProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
               <br />

@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import Store from "../views/Store.vue";
 import Poolcare from "../views/Poolcare.vue";
 import Blog from "../views/Blog.vue";
+import ProductDetails from "../views/ProductDetails.vue";
 
 const routes = [
   {
@@ -14,6 +15,11 @@ const routes = [
     path: "/store",
     name: "Store",
     component: Store,
+  },
+  {
+    path: "/ProductDetails",
+    name: "ProductDetails",
+    component: ProductDetails,
   },
   {
     path: "/poolcare",

@@ -3,7 +3,7 @@
     <div class="d-flex flex-column">
       <div class="d-flex flex-column categoryGroup">
         <h4 class="storeCategory">Categories</h4>
-        <h5 class="storeCategoryList">Apparati</h5>
+        <h5 class="storeCategoryList">  Apparati</h5>
         <h5 class="storeCategoryList">WaterPumps</h5>
         <h5 class="storeCategoryList">Uniforms</h5>
         <h5 class="storeCategoryList">Chemicals</h5>

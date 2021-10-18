@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row mx-auto">
-      <h3 style="font-weight: bold; margin-bottom: 30px">Latest Products</h3>
+      <!-- <h3 style="font-weight: bold; margin-bottom: 30px">Latest Products</h3> -->
 
       <div
         class="
@@ -157,22 +157,12 @@ export default {
 
 /* SUPER SMALL SIZED DEVICES */
 @media only screen and (max-width: 320px) {
-  .card {
-    width: 14 rem !important;
-  }
-  .storeCard {
-    width: 14 rem !important;
-  }
+
 
 }
 
 /* TABLET SIZED DEVICES */
 @media only screen and (max-width: 768px) {
-  .card {
-    width: 14 rem !important;
-  }
-  .storeCard {
-    width: 14 rem !important;
-  }
+
 }
 </style>
