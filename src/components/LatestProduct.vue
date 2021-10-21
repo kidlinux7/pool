@@ -2,59 +2,68 @@
   <div class="container">
     <!-- <div class="row mx-auto mt-5"> -->
     <h3 class="midSectionHeading">Latest Products</h3>
-    <Carousel
-      :breakpoints="breakpoints"
-      :settings="settings"
-      :autoplay="2500"
-      :wrap-around="true"
-    >
-      <Slide
-        v-for="latestproduct in latestproducts"
-        v-bind:key="latestproduct.id"
+    <div v-if="loader">
+      <h1>Loading...</h1>
+    </div>
+    <div v-else data-aos="fade-down">
+      <Carousel
+        :breakpoints="breakpoints"
+        :settings="settings"
+        :autoplay="2500"
+        :wrap-around="true"
       >
-        <div
-          class="card mx-auto latestProduct carousel__item"
-          style="width: 18rem"
+        <Slide
+          v-for="latestproduct in latestproducts"
+          v-bind:key="latestproduct.id"
         >
-          <img :src="latestproduct.image" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="latestProduct_card_category">
-              {{ latestproduct.category }}
-            </h5>
-            <h5 class="card-title blueNameTag"><a href=""><router-link to="/ProductDetails">{{ latestproduct.title }}</router-link></a></h5>
-            <div>
-              <p class="latestProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
-              <br />
+          <div
+            class="card mx-auto latestProduct carousel__item"
+            style="width: 18rem"
+          >
+            <img :src="latestproduct.image" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="latestProduct_card_category">
+                {{ latestproduct.category }}
+              </h5>
+              <h5 class="card-title blueNameTag">
+                <a href=""
+                  ><router-link to="/ProductDetails">{{
+                    latestproduct.title
+                  }}</router-link></a
+                >
+              </h5>
+              <div>
+                <p class="latestProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
+                <br />
+              </div>
+              <div>
+                <p class="latestProduct_card_info">
+                  {{ latestproduct.price }}
+                </p>
+              </div>
+              <a href="#" class="btn btn-primary addToCartBtn"
+                ><i class="fa-solid fa-cart-plus px-2"> </i>Add to cart</a
+              >
             </div>
-            <div>
-              <p class="latestProduct_card_info">
-                {{ latestproduct.price }}
-              </p>
-            </div>
-            <a href="#" class="btn btn-primary addToCartBtn"
-              ><i class="fa-solid fa-cart-plus px-2"> </i>Add to cart</a
-            >
           </div>
-        </div>
-      </Slide>
-    </Carousel>
-    <!-- </div> -->
+        </Slide>
+      </Carousel>
+    </div>
   </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide } from "vue3-carousel";
+
 export default {
   name: "LatestProduct",
   components: {
     Carousel,
     Slide,
-    // Pagination,
-    // Navigation,
   },
-    data() {
+  data() {
     return {
       settings: {
         itemsToShow: 1,
@@ -75,15 +84,17 @@ export default {
       },
     };
   },
-  mounted(){
-    this.$store.dispatch('loadLatestProducts')
+  mounted() {
+    this.$store.dispatch("loadLatestProducts");
   },
-  computed:{
-    ...mapState([
-      'latestproducts'
-    ])
-  }
-
+  computed: {
+    loader() {
+      return this.$store.getters.loader;
+    },
+    latestproducts() {
+      return this.$store.getters.latestproducts;
+    },
+  },
 };
 </script>
 <style scoped>

@@ -12,8 +12,11 @@
     "core-js": "^3.6.5",
     "feather-icons": "^4.28.0",
     "register-service-worker": "^1.7.1",
+    "skeleton-loader-vue": "^1.0.10",
     "vue": "^3.0.0",
     "vue-carousel": "^0.18.0",
+    "vue-content-placeholders": "^0.2.1",
+    "vue-loading-skeleton": "^1.1.9",
     "vue-router": "^4.0.0-0",
     "vue3-carousel": "^0.1.27",
     "vuex": "^4.0.2"
@@ -44,8 +47,7 @@
     ],
     "parserOptions": {
       "parser": "babel-eslint"
-    },
-    "rules": {}
+    }
   },
   "browserslist": [
     "> 1%",
