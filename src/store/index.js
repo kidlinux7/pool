@@ -1,7 +1,6 @@
 import vuex from 'vuex'
 import axios from 'axios'
 // import Vue from 'vue';
-
 // Vue.use(vuex, axios)
 
 let baseUrl = 'https://fakestoreapi.com/'
@@ -31,8 +30,6 @@ export default new vuex.Store({
                     let latestproducts = data.data
                     commit('SET_LATEST_PRODUCTS', latestproducts)
                     commit('SET_LOADER_STATE', false)
-
-
 
                 })
                 .catch(error => {

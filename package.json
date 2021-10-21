@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.23.0",
     "core-js": "^3.6.5",
+    "css-skeletons": "^1.0.5",
     "feather-icons": "^4.28.0",
     "register-service-worker": "^1.7.1",
     "skeleton-loader-vue": "^1.0.10",
