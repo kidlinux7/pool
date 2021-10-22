@@ -51,8 +51,8 @@
           v-bind:key="latestproduct.id"
         >
 
-        <!-- <router-link to="{ name: 'productdetails' , params: {id: latestproduct.id}}"> -->
-          <a :href="`/productdetails/${latestproduct.id}`" >
+        <router-link v-bind:to="'/productdetails/'+ latestproduct.id">
+          <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
             <div
               class="card mx-auto latestProduct carousel__item"
               style="width: 18rem"
@@ -84,8 +84,8 @@
                 >
               </div>
             </div>
-            </a>
-          <!-- </router-link> -->
+            <!-- </a> -->
+          </router-link>
         </Slide>
       </Carousel>
     </div>

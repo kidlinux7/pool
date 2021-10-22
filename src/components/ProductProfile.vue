@@ -86,6 +86,12 @@
 import LatestProduct from "@/components/LatestProduct.vue";
 export default {
   name: "ProductProfile",
+  data(){
+    return{
+      id:this.$route.params.id,
+    }
+  },
+  
   components: {
     LatestProduct,
   },

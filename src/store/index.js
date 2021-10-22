@@ -9,9 +9,11 @@ export default new vuex.Store({
     state: {
         latestproducts: [],
         loader: false,
+        productprofile:[],
 
     },
     mutations: {
+        // Fetching Latest Products
         SET_LATEST_PRODUCTS(state, latestproducts) {
             state.latestproducts = latestproducts
         },
