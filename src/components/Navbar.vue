@@ -1,47 +1,81 @@
 <template>
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light mb-5">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <div class="navbar-brand" style="font-weight: 800" to="/">💦Pool</div>
-      <div
-        class="d-sm-none d-none d-md-none d-lg-block d-xl-block d-xxl-block"
+      <a class="navbar-brand" style="font-weight: 800" href="#"
+        ><router-link to="/">💦Pool</router-link></a
       >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav mx-auto">
+
+
+      <div
+        class="
+          collapse
+          navbar-collapse
+          d-sm-none d-none d-md-none d-lg-block d-xl-block d-xxl-block
+        "
+        id="navbarSupportedContent"
+      >
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
             <a class="nav-link" href="#"
               ><router-link to="/">Home</router-link></a
             >
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#"
               ><router-link to="/store">Store</router-link></a
             >
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#"
               ><router-link to="/poolcare">Pool care</router-link></a
             >
-            <a class="nav-link" href="#"><router-link to="/blog">Blog</router-link></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"
+              ><router-link to="/blog">Blog</router-link></a
+            >
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#"
               ><router-link to="/store">About Us</router-link></a
             >
-          </div>
+          </li>
+        </ul>
+      </div>
+
+            <button
+        class="btn btn-transparent d-flex"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+      >
+        <i style="color:grey;" class="fa-solid fa-cart-shopping"></i>
+      </button>
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 id="offcanvasRightLabel">My Cart</h5>
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
         </div>
+        <div class="offcanvas-body">Shopping List</div>
       </div>
     </div>
   </nav>
-  
-
 
   <div class="d-lg-none d-xl-none d-xxl-none">
     <nav class="nav_">
-      <a  class="nav__link" href="/"><router-link to="/"></router-link>
+      <a class="nav__link" href="/"
+        ><router-link to="/"></router-link>
         <i class="fa-solid fa-house"></i>
         <span class="nav__text">Home</span>
       </a>
@@ -75,13 +109,16 @@ export default {
 };
 </script>
 <style scoped>
+.router-link-active{
+  color: orange;
+}
 .nav_ {
   position: fixed;
   bottom: 0px;
   border-radius: 0px;
   width: 100%;
   height: 65px;
-  /* box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); */
+
   background-color: #f4f4f8;
   display: flex;
   overflow-x: auto;
@@ -97,9 +134,9 @@ export default {
   min-width: 50px;
   overflow: hidden;
   white-space: nowrap;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-size: 13px;
-  /* color: #3c3c3d; */
+
   color: #5732ffce;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;

@@ -50,9 +50,8 @@
           v-for="latestproduct in latestproducts"
           v-bind:key="latestproduct.id"
         >
-
-        <router-link v-bind:to="'/productdetails/'+ latestproduct.id">
-          <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
+          <router-link v-bind:to="'/productdetails/' + latestproduct.id">
+            <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
             <div
               class="card mx-auto latestProduct carousel__item"
               style="width: 18rem"
@@ -79,9 +78,9 @@
                     {{ latestproduct.price }}
                   </p>
                 </div>
-                <div class="btn btn-primary addToCartBtn"
-                  ><i class="fa-solid fa-cart-plus px-2"> </i>Add to cart</div
-                >
+                <div class="btn btn-primary addToCartBtn">
+                  <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
+                </div>
               </div>
             </div>
             <!-- </a> -->

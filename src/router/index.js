@@ -47,4 +47,23 @@ const router = createRouter({
   routes,
 });
 
+//Top Blue Loader
+router.beforeResolve((to, from, next) => {
+  // If this isn't an initial page load.
+  if (to.name) {
+    // Start the route progress bar.
+    NProgress.start()
+  }
+  next()
+})
+
+router.afterEach((to, from) => {
+  // Complete the animation of the route progress bar.
+  NProgress.done()
+})
+
+NProgress.configure({ trickle: true });
+NProgress.configure({ easing: 'ease', speed: 500 });
+NProgress.configure({ showSpinner: false });
+
 export default router;
