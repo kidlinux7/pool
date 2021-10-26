@@ -44,43 +44,43 @@
         :breakpoints="breakpoints"
         :settings="settings"
         :autoplay="2000"
-        :wrap-around="false"
+        :wrap-around="true"
       >
         <Slide
           v-for="latestproduct in latestproducts"
-          v-bind:key="latestproduct.id"
+          v-bind:key="latestproduct.id" 
         >
-          <router-link v-bind:to="'/productdetails/' + latestproduct.id">
+          <router-link id="routeLink" v-bind:to="'/productdetails/' + latestproduct.id">
             <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
             <div
               class="card mx-auto latestProduct carousel__item"
               style="width: 18rem"
             >
-              <img :src="latestproduct.image" class="card-img-top" alt="..." />
+              <img :src="this.baseUrl + latestproduct.cover_image" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="latestProduct_card_category">
                   {{ latestproduct.category }}
                 </h5>
-                <h5 class="card-title blueNameTag">
-                  <p>latestproduct.title</p>
+                <h5 class="card-title ">
+                  <p>{{latestproduct.name}}</p>
                   <!-- <a href=""
                     ><router-link to="/ProductDetails">{{
                       
                     }}</router-link></a
                   > -->
                 </h5>
-                <div>
+                <!-- <div>
                   <p class="latestProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
                   <br />
-                </div>
+                </div> -->
                 <div>
                   <p class="latestProduct_card_info">
                     {{ latestproduct.price }}
                   </p>
                 </div>
-                <div class="btn btn-primary addToCartBtn">
+                <!-- <div class="btn btn-primary addToCartBtn">
                   <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
-                </div>
+                </div> -->
               </div>
             </div>
             <!-- </a> -->
@@ -104,6 +104,7 @@ export default {
   },
   data() {
     return {
+      baseUrl : 'https://edcc-102-64-64-8.ngrok.io',
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -137,6 +138,9 @@ export default {
 };
 </script>
 <style scoped>
+#routeLink{
+  text-decoration: none;
+}
 .latestProduct:hover {
   /* border-color: whitesmoke; */
   padding: 3px;

@@ -1,117 +1,222 @@
 <template>
   <div class="container">
-    <h3 class="midSectionHeading">Weekly Discounts</h3>
-    <div class="row">
-      <div
-        class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12"
-      >
-        <div
-          class="card mb-3 weeklyDiscount_card weeklyDiscount_card_circle"
-          style="max-width: 540px"
-        >
-          <div class="row justify-content-center g-0">
-            <div class="col-md-4">
-              <img
-                src="../assets/gumboots.png"
-                class="img-fluid rounded-center"
-                alt="..."
-              />
-            </div>
-            <div class="col-md-12">
-              <div class="card-body">
-                <h5 class="card-title blueNameTag">Purple Gum Boots</h5>
-                <p class="card-text weeklyDiscount_card_text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-                <p class="card-text">
-                  <small class="text-muted weeklyDiscount_card_text">Last updated 3 mins ago</small>
-                </p>
-              </div>
-            </div>
+    <!-- <div class="row mx-auto mt-5"> -->
+    <h3 class="midSectionHeading">Weekly Discount Products</h3>
+    <div v-if="loader">
+      <div class="container">
+        <div class="row mx-auto">
+          <div
+            class="
+              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
+            "
+          >
+            <div
+              class="skeleton skeleton-rect mx-auto"
+              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
+            ></div>
           </div>
-        </div>
-      </div>
 
-      <div
-        class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12"
-      >
-        <div
-          class="card mb-3 weeklyDiscount_card weeklyDiscount_card_circle"
-          style="max-width: 540px"
-        >
-          <div class="row justify-content-center g-0">
-            <div class="col-md-4">
-              <img
-                src="../assets/gumboots.png"
-                class="img-fluid rounded-center"
-                alt="..."
-              />
-            </div>
-            <div class="col-md-12">
-              <div class="card-body">
-                <h5 class="card-title blueNameTag">Purple Gum Boots</h5>
-                <p class="card-text weeklyDiscount_card_text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-                <p class="card-text">
-                  <small class="text-muted weeklyDiscount_card_text">Last updated 3 mins ago</small>
-                </p>
-              </div>
-            </div>
+          <div
+            class="
+              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
+            "
+          >
+            <div
+              class="skeleton skeleton-rect mx-auto"
+              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
+            ></div>
+          </div>
+          <div
+            class="
+              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
+            "
+          >
+            <div
+              class="skeleton skeleton-rect mx-auto"
+              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
+            ></div>
           </div>
         </div>
       </div>
     </div>
+    <div v-else data-aos="fade-in">
+      <Carousel
+        :breakpoints="breakpoints"
+        :settings="settings"
+        :autoplay="2000"
+        :wrap-around="true"
+      >
+        <Slide
+          v-for="weeklydiscountproduct in weeklydiscountproducts"
+          v-bind:key="weeklydiscountproduct.id" 
+        >
+          <router-link id="routeLink" v-bind:to="'/productdetails/' + weeklydiscountproduct.id">
+            <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
+            <div
+              class="card mx-auto weeklyDiscountProduct carousel__item"
+              style="width: 18rem"
+            >
+              <img :src="this.baseUrl + weeklydiscountproduct.cover_image" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="weeklyDiscountProduct_card_category">
+                  {{ weeklydiscountproduct.category }}
+                </h5>
+                <h5 class="card-title ">
+                  <p>{{weeklydiscountproduct.name}}</p>
+                  <!-- <a href=""
+                    ><router-link to="/ProductDetails">{{
+                      
+                    }}</router-link></a
+                  > -->
+                </h5>
+                <!-- <div>
+                  <p class="latestProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
+                  <br />
+                </div> -->
+                <div>
+                  <p class="weeklyDiscountProduct_card_info">
+                    {{ weeklydiscountproduct.price }}
+                  </p>
+                </div>
+                <!-- <div class="btn btn-primary addToCartBtn">
+                  <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
+                </div> -->
+              </div>
+            </div>
+            <!-- </a> -->
+          </router-link>
+        </Slide>
+      </Carousel>
+    </div>
   </div>
 </template>
-
 <script>
+import { mapState } from "vuex";
+// If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide } from "vue3-carousel";
+import "css-skeletons";
 export default {
-  name: "WeeklyDiscount",
+  name: "LatestProduct",
+  components: {
+    Carousel,
+    Slide,
+  },
+  data() {
+    return {
+      baseUrl : 'https://edcc-102-64-64-8.ngrok.io',
+      settings: {
+        itemsToShow: 1,
+        snapAlign: "center",
+      },
+
+      breakpoints: {
+        // 700px and up
+        768: {
+          itemsToShow: 3,
+          snapAlign: "center",
+        },
+        // 1024 and up
+        1024: {
+          itemsToShow: 3,
+          snapAlign: "center",
+        },
+      },
+    };
+  },
+  mounted() {
+    this.$store.dispatch("loadWeeklyDiscountProducts");
+  },
+  computed: {
+    loader() {
+      return this.$store.getters.loader;
+    },
+    weeklydiscountproducts() {
+      return this.$store.getters.weeklydiscountproducts;
+    },
+  },
 };
 </script>
 
 <style scoped>
-.card-text {
-  font-family: "Poppins", sans;
+#routeLink{
+  text-decoration: none;
 }
-/* Weekly Discount Card */
-.weeklydiscount_card_info {
+.weeklyDiscountProduct:hover {
+  /* border-color: whitesmoke; */
+  padding: 3px;
+  transition: 0.3s ease-in-out;
+  box-shadow: 10px 10px 20px 5px rgb(235, 233, 233);
+}
+.weeklyDiscountProduct_card_category {
+  color: rgb(173, 173, 173);
   text-align: left;
+  margin-left: 20px;
   font-family: "Poppins", sans;
-  padding-right: 20px;
-  margin-bottom: 50px;
+  font-size: 0.9em;
 }
-
-.weeklyDiscount_card {
-  background-color: rgb(246, 246, 255);
+.cartIcon {
+  margin-right: 20px;
+}
+.weeklyDiscountProduct_card_addtocart_text {
+  font-size: 1.7em;
+}
+.weeklyDiscountProduct_card_addtocart {
+  padding: 7px;
+  background-color: rgb(41, 41, 255);
+  color: white;
+  font-weight: bold;
   border-radius: 7px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-family: "Poppins", sans;
+}
+.weeklyDiscountProduct_card_price {
+  font-family: "Poppins";
+  font-size: 2.1em;
+  font-weight: 900;
+  color: #696969;
+}
+.weeklyDiscountProduct_card {
+  height: 300px;
+  width: 100;
+}
+.weeklyDiscountProduct_card_image {
+  height: 290px;
   padding: 20px;
+  width: auto;
 }
-.weeklyDiscount_card_circle {
-  background-image: url("../assets/circle.png");
-
-  background-repeat: no-repeat;
-  background-size: contain;
-  margin-top: 50px;
+.weeklyDiscountProduct_card_ratingStars {
+  height: 10px;
+  margin-left: 70px;
+  margin-right: 50px;
+  opacity: 0.7;
+  float: left;
+  text-align: center;
 }
-
-.weeklyDiscount_card_product_image {
-  height: 250px;
+.greyNameTag {
+  font-weight: 900;
+  background-color: #e6e6e67a;
+  color: #888888;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-size: 1.3em;
+  font-family: "Poppins", sans;
+  padding: 7px;
 }
-
-/* TABLET SIZED DEVICES */
-@media only screen and (max-width: 768px) {
-  .blueNameTag {
-    font-size: 0.9em;
-  }
-  .weeklyDiscount_card_text {
-    font-size: 0.8em;
-    text-align: left;
-  }
+.weeklyDiscountProduct_card_info {
+  text-align: center;
+  font-family: "Poppins", sans;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-top: 10px;
+  color: #0000ff;
+  font-size: 1.3em;
+  font-weight: 900;
+}
+.skeleton-rect {
+  border-radius: 35px !important;
 }
 </style>

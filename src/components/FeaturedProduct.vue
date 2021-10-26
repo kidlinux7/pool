@@ -1,74 +1,139 @@
 <template>
   <div class="container">
-    <div class="row mx-auto">
-      <h3 class="midSectionHeading">Featured Products</h3>
-    </div>
-    <div class="row topSpacer mx-auto">
-      <div
-        class="
-          col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12
-          mb-5
-        "
-        v-for="featuredproduct in featuredproducts"
-        v-bind:key="featuredproduct.id"
-      >
+    <!-- <div class="row mx-auto mt-5"> -->
+    <h3 class="midSectionHeading">Featured Products</h3>
+    <div v-if="loader">
+      <div class="container">
+        <div class="row mx-auto">
+          <div
+            class="
+              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
+            "
+          >
+            <div
+              class="skeleton skeleton-rect mx-auto"
+              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
+            ></div>
+          </div>
 
-        <div class="card mx-auto" style="width: 16rem">
-          <img src="../assets/gumboots.png" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="featuredProduct_card_category">{{featuredproduct.category}}</h5>
-            <h5 class="card-title blueNameTag">{{ featuredproduct.name }}</h5>
-            <!-- <p class="featuredProduct_card_ratingStars">⭐⭐⭐⭐⭐</p><br> -->
-            
-            <p class="featuredProduct_card_info">
-              {{ featuredproduct.info }}
-            </p>
-            <!-- <a href="#" class="btn btn-primary"
-              ><i class="fa-solid fa-cart-plus px-2"> </i>Add to cart</a
-            > -->
+          <div
+            class="
+              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
+            "
+          >
+            <div
+              class="skeleton skeleton-rect mx-auto"
+              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
+            ></div>
+          </div>
+          <div
+            class="
+              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
+            "
+          >
+            <div
+              class="skeleton skeleton-rect mx-auto"
+              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
+            ></div>
           </div>
         </div>
       </div>
     </div>
+    <div v-else data-aos="fade-in">
+      <Carousel
+        :breakpoints="breakpoints"
+        :settings="settings"
+        :autoplay="2000"
+        :wrap-around="true"
+      >
+        <Slide
+          v-for="featuredproduct in featuredproducts"
+          v-bind:key="featuredproduct.id" 
+        >
+          <router-link id="routeLink" v-bind:to="'/productdetails/' + featuredproduct.id">
+            <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
+            <div
+              class="card mx-auto featuredProduct carousel__item"
+              style="width: 18rem"
+            >
+              <img :src="this.baseUrl + featuredproduct.cover_image" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="featuredProduct_card_category">
+                  {{ featuredproduct.category }}
+                </h5>
+                <h5 class="card-title ">
+                  <p>{{featuredproduct.name}}</p>
+                  <!-- <a href=""
+                    ><router-link to="/ProductDetails">{{
+                      
+                    }}</router-link></a
+                  > -->
+                </h5>
+                <!-- <div>
+                  <p class="latestProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
+                  <br />
+                </div> -->
+                <div>
+                  <p class="featuredProduct_card_info">
+                    {{ featuredproduct.price }}
+                  </p>
+                </div>
+                <!-- <div class="btn btn-primary addToCartBtn">
+                  <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
+                </div> -->
+              </div>
+            </div>
+            <!-- </a> -->
+          </router-link>
+        </Slide>
+      </Carousel>
+    </div>
   </div>
 </template>
-
 <script>
-
+import { mapState } from "vuex";
+// If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide } from "vue3-carousel";
+import "css-skeletons";
 export default {
-  name: "FeaturedProduct",
+  name: "LatestProduct",
   components: {
-
+    Carousel,
+    Slide,
   },
   data() {
     return {
-      featuredproducts: [
-        {
-          id: 1,
-          name: "Duct Tape",
-          category:"Cleaning",
-          info: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam quia beatae rem incidunt.",
+      baseUrl : 'https://edcc-102-64-64-8.ngrok.io',
+      settings: {
+        itemsToShow: 1,
+        snapAlign: "center",
+      },
+
+      breakpoints: {
+        // 700px and up
+        768: {
+          itemsToShow: 3,
+          snapAlign: "center",
         },
-        {
-          id: 2,
-          name: "Purple Boots",
-          category:"Fixing",
-          info: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam quia beatae rem incidunt.",
+        // 1024 and up
+        1024: {
+          itemsToShow: 3,
+          snapAlign: "center",
         },
-        {
-          id: 3,
-          name: "More Duct Tape",
-          category:"Cleaning",
-          info: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam quia beatae rem incidunt.",
-        },
-        {
-          id: 4,
-          name: "ductTape",
-          category:"Cleaning",
-          info: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam quia beatae rem incidunt.",
-        },
-      ],
+      },
     };
+  },
+  mounted() {
+    this.$store.dispatch("loadFeaturedProducts");
+  },
+  computed: {
+    loader() {
+      return this.$store.getters.loader;
+    },
+    featuredproducts() {
+      return this.$store.getters.featuredproducts;
+    },
   },
 };
 </script>

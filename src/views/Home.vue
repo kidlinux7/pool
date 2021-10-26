@@ -37,7 +37,7 @@
     <WeeklySale></WeeklySale>
     <BestSellingProduct></BestSellingProduct>
     <NewsLetter></NewsLetter>
-    <BlogCards></BlogCards>
+    <BlogCardSnippet></BlogCardSnippet>
     
   </div>
   <Footer></Footer>
@@ -50,7 +50,7 @@ import LatestProduct from "@/components/LatestProduct.vue";
 import BestSellingProduct from "@/components/BestSellingProduct.vue";
 import WeeklySale from "@/components/WeeklySale.vue";
 import NewsLetter from "@/components/NewsLetter.vue";
-import BlogCards from "@/components/BlogCards.vue";
+import BlogCardSnippet from "@/components/BlogCardSnippet.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
@@ -62,7 +62,7 @@ export default {
     BestSellingProduct,
     WeeklySale,
     NewsLetter,
-    BlogCards,
+    BlogCardSnippet,
     Footer,
   },
 };

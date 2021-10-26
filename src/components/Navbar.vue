@@ -110,7 +110,7 @@ export default {
 </script>
 <style scoped>
 .router-link-active{
-  color: orange;
+  color: rgb(143, 143, 143);
 }
 .nav_ {
   position: fixed;

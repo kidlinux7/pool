@@ -9,8 +9,8 @@
         >
           <div class="d-flex flex-column">
             <div
-              class="skeleton skeleton-rect mx-auto"
-              style="--rect-h: 50vh; --rect-w: 100vh; --lines: 0; --t: 0.6s"
+              class="skeleton skeleton-rect mt-4 mx-auto"
+              style="--rect-h: 40vh; --rect-w: 100vh; --lines: 0; --t: 0.6s"
             ></div>
             <div class="d-flex justify-content-evenly">
               <div class="imgView1">
@@ -26,12 +26,7 @@
                   style="--rect-h: 200px; --lines: 0; --t: 0.6s"
                 ></div>
               </div>
-              <div class="imgView2">
-                <div
-                  class="skeleton skeleton-rect mx-auto"
-                  style="--rect-h: 200px; --lines: 0; --t: 0.6s"
-                ></div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -43,10 +38,16 @@
           <div class="card detailsCard w-100">
             <div class="card-body text-left">
               <h5 class="card-title productHead">
-                <div class="skeleton skeleton-line" style="--l-h: 20px"></div>
+                <div 
+                    class="skeleton skeleton-line" 
+                    style="
+                      --lines: 5;
+                      --c-w: 100%;
+                    "
+                  ></div>
               </h5>
               <h6 class="card-subtitle mb-2 text-muted producer mt-3">
-                <div class="skeleton skeleton-line" style="--l-h: 20px"></div>
+                <div class="skeleton skeleton-line" style="--l-h: 40px"></div>
               </h6>
               <h6 class="card-subtitle mb-2 text-muted mt-3">
                                <div 
@@ -61,13 +62,13 @@
                 ></div>
               </h6>
               <p class="card-text mt-3 productDescription">
-<div 
-  class="skeleton skeleton-line" 
-  style="
-    --lines: 5;
-    --c-w: 100%;
-  "
-></div>
+              <div 
+                class="skeleton skeleton-line" 
+                style="
+                  --lines: 5;
+                  --c-w: 100%;
+                "
+              ></div>
               </p>
               <!-- <h6 class="card-subtitle mb-2 text-muted mt-3">Colors</h6>
             <div class="d-flex flex-row">
@@ -109,13 +110,13 @@
           </div>
           <div class="d-flex flex-row-reverse">
             <p style="text-align: left">
-<div 
-  class="skeleton skeleton-line" 
-  style="
-    --lines: 5;
-    --c-w: 100%;
-  "
-></div>
+                <div 
+                  class="skeleton skeleton-line" 
+                  style="
+                    --lines: 5;
+                    --c-w: 100%;
+                  "
+                ></div>
             </p>
           </div>
         </div>
@@ -281,8 +282,6 @@ export default {
 };
 </script>
 <style scoped>
-.mainImage {
-}
 .productPrice {
   font-size: 2em;
   font-weight: 900;

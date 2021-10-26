@@ -1,88 +1,110 @@
 <template>
   <div class="container">
-    <!-- <div class="row mt-3"> -->
-      <h3 class="midSectionHeading">Best Selling Products</h3>
-    <Carousel
-      :breakpoints="breakpoints"
-      :settings="settings"
-      :autoplay="2900"
-      :wrap-around="true"
-    >
-          <Slide
-           v-for="bestsellingproduct in bestsellingproducts"
-        v-bind:key="bestsellingproduct.id"
-      >
-        <div class="card mx-auto bestSellingProduct  carousel__item" style="width: 18rem">
-          <img src="../assets/gumboots.png" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="bestSellingProduct_card_category">
-              {{ bestsellingproduct.category }}
-            </h5>
-            <h5 class="card-title blueNameTag">{{ bestsellingproduct.name }}</h5>
-            <p class="bestSellingProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
-            <br />
-            <p class="bestSellingProduct_card_info">
-              {{ bestsellingproduct.price }}
-            </p>
-            <a href="#" class="btn btn-primary addToCartBtn"
-              ><i class="fa-solid fa-cart-plus px-2"> </i>Add to cart</a
-            >
+    <!-- <div class="row mx-auto mt-5"> -->
+    <h3 class="midSectionHeading">Best Selling Products</h3>
+    <div v-if="loader">
+      <div class="container">
+        <div class="row mx-auto">
+          <div
+            class="
+              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
+            "
+          >
+            <div
+              class="skeleton skeleton-rect mx-auto"
+              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
+            ></div>
+          </div>
+
+          <div
+            class="
+              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
+            "
+          >
+            <div
+              class="skeleton skeleton-rect mx-auto"
+              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
+            ></div>
+          </div>
+          <div
+            class="
+              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
+            "
+          >
+            <div
+              class="skeleton skeleton-rect mx-auto"
+              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
+            ></div>
           </div>
         </div>
-      
-          </Slide>
-    </Carousel>
-
-
-    <!-- </div> -->
+      </div>
+    </div>
+    <div v-else data-aos="fade-in">
+      <Carousel
+        :breakpoints="breakpoints"
+        :settings="settings"
+        :autoplay="2000"
+        :wrap-around="true"
+      >
+        <Slide
+          v-for="bestsellingproduct in bestsellingproducts"
+          v-bind:key="bestsellingproduct.id" 
+        >
+          <router-link id="routeLink" v-bind:to="'/productdetails/' + bestsellingproduct.id">
+            <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
+            <div
+              class="card mx-auto bestSellingProduct carousel__item"
+              style="width: 18rem"
+            >
+              <img :src="this.baseUrl + bestsellingproduct.cover_image" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="bestSellingProduct_card_category">
+                  {{ bestsellingproduct.category }}
+                </h5>
+                <h5 class="card-title ">
+                  <p>{{bestsellingproduct.name}}</p>
+                  <!-- <a href=""
+                    ><router-link to="/ProductDetails">{{
+                      
+                    }}</router-link></a
+                  > -->
+                </h5>
+                <!-- <div>
+                  <p class="latestProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
+                  <br />
+                </div> -->
+                <div>
+                  <p class="bestSellingProduct_card_info">
+                    {{ bestsellingproduct.price }}
+                  </p>
+                </div>
+                <!-- <div class="btn btn-primary addToCartBtn">
+                  <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
+                </div> -->
+              </div>
+            </div>
+            <!-- </a> -->
+          </router-link>
+        </Slide>
+      </Carousel>
+    </div>
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide } from "vue3-carousel";
+import "css-skeletons";
 export default {
-  name: "BestSellingProduct",
+  name: "LatestProduct",
   components: {
     Carousel,
     Slide,
-    // Pagination,
-    // Navigation,
   },
   data() {
     return {
-      bestsellingproducts: [
-        {
-          id: 1,
-          category: "Cleaning",
-          name: "Purple Boots",
-          price: "Tsh 15,000",
-        },
-        {
-          id: 2,
-          category: "Repairing",
-          name: "Green Boots",
-          price: "Tsh 17,900",
-        },
-        {
-          id: 3,
-          category: "Fixing",
-          name: "Orange Boots",
-          price: "Tsh 12,810",
-        },
-        {
-          id: 4,
-          category: "Fixing",
-          name: "Yellow Boots",
-          price: "Tsh 19,810",
-        },
-                {
-          id: 5,
-          category: "Fixing",
-          name: "Red Boots",
-          price: "Tsh 22,190",
-        },
-      ],
+      baseUrl : 'https://edcc-102-64-64-8.ngrok.io',
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -101,6 +123,17 @@ export default {
         },
       },
     };
+  },
+  mounted() {
+    this.$store.dispatch("loadBestSellingProducts");
+  },
+  computed: {
+    loader() {
+      return this.$store.getters.loader;
+    },
+    bestsellingproducts() {
+      return this.$store.getters.bestsellingproducts;
+    },
   },
 };
 </script>
