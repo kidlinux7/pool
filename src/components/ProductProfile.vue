@@ -76,30 +76,25 @@
                   "
                 ></div>
               </h6>
-              <h6 class="card-subtitle mb-0 text-muted productPrice mt-1">
+              <h6 class="card-subtitle mb-0 text-muted productPrice mt-0">
                 <div 
                  class="skeleton skeleton-line" 
             style="--l-h: 30px;
             --c-w: 200px;
+            
             "
                 ></div>
               </h6>
-              <p class="card-text mt-0 productDescription">
+              <!-- <p class="card-text mt-0 productDescription"> -->
               <div 
                 class="skeleton skeleton-line" 
                 style="
                   --lines: 4;
                   --c-w: 100%;
+                  
                 "
               ></div>
-              </p>
-              <!-- <h6 class="card-subtitle mb-2 text-muted mt-3">Colors</h6>
-            <div class="d-flex flex-row">
-              <div class="colorSpace"></div>
-              <div class="colorSpace"></div>
-              <div class="colorSpace"></div>
-              <div class="colorSpace"></div>
-            </div> -->
+              <!-- </p> -->
               <h6 class="card-subtitle mb-0 text-muted"><div 
                   class="skeleton skeleton-line" 
                   style="--l-h: 20px;
@@ -155,28 +150,14 @@
         >
           <div class="d-flex flex-column">
             <img
-              :src="productprofile.image"
+              :src="this.baseUrl + productprofile.cover_image"
               class="img-fluid mainImage m-5"
               alt="product Image"
             />
-            <div class="d-flex flex-row">
-              <div class="imgView1">
+            <div class="d-flex flex-row" >
+              <div class="imgView1" v-on:click="updateImage(image)" v-for="image in productprofile.product_image" v-bind:key="image">
                 <img
-                  src="../assets/gumboots.png"
-                  class="img-fluid"
-                  alt="product Image"
-                />
-              </div>
-              <div class="imgView2">
-                <img
-                  src="../assets/gumboots.png"
-                  class="img-fluid"
-                  alt="product Image"
-                />
-              </div>
-              <div class="imgView2">
-                <img
-                  src="../assets/gumboots.png"
+                  :src="this.baseUrl + image"
                   class="img-fluid"
                   alt="product Image"
                 />
@@ -191,13 +172,17 @@
         >
           <div class="card detailsCard w-100">
             <div class="card-body text-left">
-              <h5 class="card-title productHead">{{ productprofile.title }}</h5>
-              <h6 class="card-subtitle mb-2 text-muted producer mt-3">
-                By Cello
+              <div class="d-flex flex-row mb-2">
+              <span class="badge bg-secondary">{{productprofile.category}}</span>
+
+              </div>
+              <h5 class="card-title productHead">{{ productprofile.name }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted producer mt-0">
+                {{ productprofile.brand }}
               </h6>
               <h6 class="card-subtitle mb-2 text-muted mt-3">⭐⭐⭐⭐⭐</h6>
               <h6 class="card-subtitle mb-2 text-muted productPrice mt-3">
-                Tsh {{ productprofile.price }}
+                Tsh {{ productprofile.sell_price }}
               </h6>
               <p class="card-text mt-3 productDescription">
                 {{ productprofile.description }}
@@ -232,19 +217,7 @@
           </div>
           <div class="d-flex flex-row-reverse">
             <p style="text-align: left">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint cum
-              voluptas ipsam, perspiciatis neque tempore id quas quisquam natus,
-              atque distinctio in non consequuntur delectus repellat et totam
-              amet sapiente. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Dolores, sunt. Aut ea sequi, vitae veniam non laudantium
-              fugit distinctio doloribus nostrum eligendi architecto vel, sint
-              inventore? Nemo iure dolorum sed! Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Porro, dicta pariatur totam ab earum
-              assumenda asperiores? A, dicta quas error, pariatur est excepturi
-              nisi corporis perspiciatis quam, hic quasi commodi. Lorem ipsum
-              dolor sit, amet consectetur adipisicing elit. Illo nostrum vitae
-              tempora molestiae et a optio eveniet voluptate expedita sit
-              aperiam molestias quae, itaque sed? Eveniet iure eaque aut a.
+              {{ productprofile.specification }}
             </p>
           </div>
         </div>
@@ -257,26 +230,20 @@
 import LatestProduct from "@/components/LatestProduct.vue";
 import axios from "axios";
 import "css-skeletons";
-
 export default {
   name: "ProductProfile",
   data() {
     return {
+      baseUrl:"https://f45a-102-64-64-8.ngrok.io",
       id: this.$route.params.id,
-      productprofile: {
-        title: null,
-        price: null,
-        description: null,
-        image: null,
-        category: null,
-      },
+      productprofile: [],
       loader: false,
     };
   },
   mounted() {
     this.loader = true;
     axios
-      .get("https://fakestoreapi.com/product/" + this.id)
+      .get("https://f45a-102-64-64-8.ngrok.io/inventory/api/product/details?product=9")
       .then((data) => {
         // console.log(data.data);
         this.productprofile = data.data;
@@ -285,6 +252,11 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+  },
+  methods:{
+    updateImage(Image){
+       this.productprofile.cover_image  = Image 
+    }
   },
   components: {
     LatestProduct,

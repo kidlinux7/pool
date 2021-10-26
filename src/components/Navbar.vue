@@ -59,7 +59,10 @@
         aria-labelledby="offcanvasRightLabel"
       >
         <div class="offcanvas-header">
-          <h5 id="offcanvasRightLabel">My Cart</h5>
+          <h5 id="offcanvasRightLabel">My Cart
+
+            
+          </h5>
           <button
             type="button"
             class="btn-close text-reset"

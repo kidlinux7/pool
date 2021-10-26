@@ -43,7 +43,7 @@
       <Carousel
         :breakpoints="breakpoints"
         :settings="settings"
-        :autoplay="2000"
+        :autoplay="2200"
         :wrap-around="true"
       >
         <Slide
@@ -104,7 +104,7 @@ export default {
   },
   data() {
     return {
-      baseUrl : 'https://edcc-102-64-64-8.ngrok.io',
+      baseUrl : 'https://f45a-102-64-64-8.ngrok.io',
       settings: {
         itemsToShow: 1,
         snapAlign: "center",

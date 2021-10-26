@@ -4,7 +4,7 @@ import axios from 'axios'
 // import Vue from 'vue';
 // Vue.use(vuex, axios)
 
-let baseUrl = 'https://edcc-102-64-64-8.ngrok.io/'
+let baseUrl = 'https://f45a-102-64-64-8.ngrok.io/'
 
 export default new vuex.Store({
     state: {
