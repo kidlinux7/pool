@@ -1,31 +1,46 @@
 <template>
   <div class="container">
-    <div v-if="loader">
-      <div class="row align-items-start productDetails">
+    <div v-if="loader" data-aos="fade-in">
+      <div class="row mx-auto align-items-center productDetails" >
         <div
           class="
             col-xxl-7 col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 col-12
           "
         >
-          <div class="d-flex flex-column">
+          <div class="d-flex flex-column mx-auto">
             <div
-              class="skeleton skeleton-rect mt-4 mx-auto"
-              style="--rect-h: 40vh; --rect-w: 100vh; --lines: 0; --t: 0.6s"
+              class="skeleton skeleton-rect mt-1 mx-auto"
+              style="--rect-h: 40vh; --c-w: 90%; --lines: 0; --t: 0.6s"
             ></div>
-            <div class="d-flex justify-content-evenly">
-              <div class="imgView1">
+            <div class="d-flex justify-content-around">
+              <!-- <div class="imgView1">
                 <div
-                  class="skeleton skeleton-rect mx-auto"
-                  style="--rect-h: 200px; --lines: 0; --t: 0.6s;"
+                  class="skeleton skeleton-rect "
+                  style="--rect-h: 100px;  --lines: 0; --t: 0.6s;"
+                ></div>
+              </div> -->
+
+              <div class="">
+                <div
+                  class="skeleton skeleton-rect "
+                  style="--rect-h: 110px; --c-w:100px; --lines: 0; --t: 0.6s"
+                ></div>
+              </div> 
+
+              <div class="">
+                <div
+                  class="skeleton skeleton-rect "
+                  style="--rect-h: 110px; --c-w:100px; --lines: 0; --t: 0.6s"
                 ></div>
               </div>
 
-              <div class="imgView2">
+              <div class="">
                 <div
-                  class="skeleton skeleton-rect mx-auto"
-                  style="--rect-h: 200px; --lines: 0; --t: 0.6s"
+                  class="skeleton skeleton-rect "
+                  style="--rect-h: 110px; --c-w:100px; --lines: 0; --t: 0.6s"
                 ></div>
               </div>
+
 
             </div>
           </div>
@@ -35,37 +50,45 @@
             col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 col-12
           "
         >
-          <div class="card detailsCard w-100">
+          <div class="card detailsCard ">
             <div class="card-body text-left">
               <h5 class="card-title productHead">
                 <div 
                     class="skeleton skeleton-line" 
                     style="
-                      --lines: 5;
+                      --lines: 2;
                       --c-w: 100%;
+                      --l-h: 30px
                     "
                   ></div>
               </h5>
-              <h6 class="card-subtitle mb-2 text-muted producer mt-3">
-                <div class="skeleton skeleton-line" style="--l-h: 40px"></div>
+              <h6 class="card-subtitle mb-2 text-muted producer ">
+                <div class="skeleton skeleton-line" style="--l-h: 20px;
+                      --c-w: 100px;
+                
+                "></div>
               </h6>
-              <h6 class="card-subtitle mb-2 text-muted mt-3">
+              <h6 class="card-subtitle mb-2 text-muted">
                                <div 
                   class="skeleton skeleton-line" 
-                  style="--l-h: 20px;"
+                  style="--l-h: 20px;
+                  --c-w: 100px;
+                  "
                 ></div>
               </h6>
-              <h6 class="card-subtitle mb-2 text-muted productPrice mt-3">
+              <h6 class="card-subtitle mb-0 text-muted productPrice mt-1">
                 <div 
                  class="skeleton skeleton-line" 
-            style="--l-h: 20px;"
+            style="--l-h: 30px;
+            --c-w: 200px;
+            "
                 ></div>
               </h6>
-              <p class="card-text mt-3 productDescription">
+              <p class="card-text mt-0 productDescription">
               <div 
                 class="skeleton skeleton-line" 
                 style="
-                  --lines: 5;
+                  --lines: 4;
                   --c-w: 100%;
                 "
               ></div>
@@ -77,36 +100,37 @@
               <div class="colorSpace"></div>
               <div class="colorSpace"></div>
             </div> -->
-              <h6 class="card-subtitle mb-2 text-muted"><div 
+              <h6 class="card-subtitle mb-0 text-muted"><div 
                   class="skeleton skeleton-line" 
-                  style="--l-h: 40px;"
+                  style="--l-h: 20px;
+                  --c-w:150px"
                 ></div></h6>
 
-              <div class="d-flex align-items-center">
+              <div class="d-flex align-items-start">
                 <a href="#" class="card-link"><div 
                             class="skeleton skeleton-line" 
-                            style="--l-h: 40px;"
+                            style="--l-h: 40px;--c-w:110px;"
                           ></div></a>
                           <div 
                             class="skeleton skeleton-line" 
-                            style="--l-h: 40px;"
+                            style="--l-h: 40px;--c-w:110px;"
                           ></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row mt-5">
+      <div class="row mt-5 mx-auto" >
         <div
           class="
             col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12
           "
         >
-          <div class="d-flex flex-row">
+          <div class="d-flex flex-row mx-auto">
             <h4 style="font-weight: bold"><div 
-  class="skeleton skeleton-line" 
-  style="--l-h: 40px;"
-></div></h4>
+                  class="skeleton skeleton-line" 
+                  style="--l-h: 30px;"
+                ></div></h4>
           </div>
           <div class="d-flex flex-row-reverse">
             <p style="text-align: left">
@@ -122,7 +146,7 @@
         </div>
       </div>
     </div>
-    <div v-else>
+    <div v-else data-aos="fade-out">
       <div class="row align-items-start productDetails">
         <div
           class="
@@ -252,7 +276,7 @@ export default {
   mounted() {
     this.loader = true;
     axios
-      .get("https://fakestoreapi.com/products/" + this.id)
+      .get("https://fakestoreapi.com/product/" + this.id)
       .then((data) => {
         // console.log(data.data);
         this.productprofile = data.data;
@@ -347,7 +371,8 @@ export default {
   }
   .imgView1,
   .imgView2 {
-    height: auto;
+    height: 100px;
+    width: 200px;
   }
 }
 
