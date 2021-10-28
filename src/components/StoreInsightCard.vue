@@ -1,85 +1,64 @@
 <template>
-  <h3 class="midSectionHeading">Sale Off</h3>
-
-  <Carousel
-    :breakpoints="breakpoints"
-    :settings="settings"
-    :autoplay="2500"
-    :wrap-around="true"
-  >
-    <Slide
-      v-for="saleoffproduct in saleoffproducts"
-      v-bind:key="saleoffproduct.id"
-    >
+  <div class="container">
+    <div class="row mt-1">
       <div
-        class="card mx-auto saleOffProduct mt-5 carousel__item"
-        style="width: 18rem"
+        class="
+          col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12
+        "
       >
-        <img src="../assets/gumboots.png" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="saleOffProduct_card_category">
-            {{ saleoffproduct.category }}
-          </h5>
-          <h5 class="card-title blueNameTag">{{ saleoffproduct.name }}</h5>
-          <div>
-            <p class="saleOffProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
-            <br />
-          </div>
-          <div>
-            <p class="saleOffProduct_card_info">
-              {{ saleoffproduct.price }}
-            </p>
-          </div>
-          <a href="#" class="btn btn-primary addToCartBtn"
-            ><i class="fa-solid fa-cart-plus px-2"> </i>Add to cart</a
+        <Carousel
+          :breakpoints="breakpoints"
+          :settings="settings"
+          :autoplay="4500"
+          :wrap-around="false"
+        >
+          <Slide
+            v-for="storeInsight in storeInsights"
+            v-bind:key="storeInsight.id"
           >
-        </div>
+            <img src="../assets/poster2.jpg" class="img-fluid" alt="..." />
+          </Slide>
+        </Carousel>
       </div>
-    </Slide>
-  </Carousel>
+    </div>
+  </div>
 </template>
 <script>
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide } from "vue3-carousel";
 export default {
-  name: "SaleOff",
+  name: "StoreInsightCard",
   components: {
     Carousel,
     Slide,
   },
   data() {
     return {
-      saleoffproducts: [
+      storeInsights: [
         {
           id: 1,
-          category: "Cleaning",
-          name: "Purple Boots",
-          price: "Tsh 15,000",
+          title: "Cleaning",
+          image: "../assets/poster2.jpg",
+          description: "Tsh 10,000",
         },
         {
           id: 2,
-          category: "Cleaning",
-          name: "Purple Boots",
-          price: "Tsh 15,000",
+          title: "Cleaning",
+          image: "../assets/poster2.jpg",
+          description: "Tsh 15,000",
         },
         {
           id: 3,
-          category: "Fixing",
-          name: "Orange Boots",
-          price: "Tsh 12,810",
+          title: "Cleaning",
+          image: "../assets/poster2.jpg",
+          description: "Tsh 15,000",
         },
         {
           id: 4,
-          category: "Fixing",
-          name: "Yellow Boots",
-          price: "Tsh 19,810",
-        },
-        {
-          id: 5,
-          category: "Not Fixing",
-          name: "Yellow Boots",
-          price: "Tsh 21,700",
+          title: "Cleaning",
+          image: "../assets/poster2.jpg",
+          description: "Tsh 15,000",
         },
       ],
       settings: {
@@ -90,12 +69,12 @@ export default {
       breakpoints: {
         // 700px and up
         768: {
-          itemsToShow: 3,
+          itemsToShow: 1,
           snapAlign: "center",
         },
         // 1024 and up
         1024: {
-          itemsToShow: 3,
+          itemsToShow: 1,
           snapAlign: "center",
         },
       },

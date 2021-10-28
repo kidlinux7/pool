@@ -2,80 +2,104 @@
   <div class="container">
     <div class="row mx-auto">
       <!-- <h3 style="font-weight: bold; margin-bottom: 30px">Latest Products</h3> -->
-
-      <div
-        class="
-          col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-6 col-xs-12 col-12
-          mt-4
-          mb-4
-          mx-auto
-        "
-        v-for="storecard in storecards"
-        v-bind:key="storecard.id"
-      >
-        <div class="card mx-auto storeCard" style="width: 18rem">
-          <img src="../assets/gumboots.png" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="storeCard_card_category">
-              {{ storecard.category }}
-            </h5>
-            <h5 class="card-title blueNameTag">{{ storecard.name }}</h5>
-            <div>
-              <p class="storeCard_card_ratingStars">⭐⭐⭐⭐⭐</p>
-              <br />
-            </div>
-            <div>
-              <p class="storeCard_card_info">
-                {{ storecard.price }}
-              </p>
-            </div>
-            <a href="#" class="btn btn-primary addToCartBtn"
-              ><i class="fa-solid fa-cart-plus px-2"> </i>Add to cart</a
+      <div v-if="loader">
+        <div class="container-fluid">
+          <div class="row mx-auto">
+            <div
+              class="
+                col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
+              "
+              v-for="index in 10" :key="index"  
             >
+              <div
+                class="skeleton skeleton-rect mx-auto"
+                style="--rect-h: 270px; --lines: 2; --t: 0.6s"
+              ></div>
+            </div>
+
+
           </div>
         </div>
+      </div>
+
+      <div v-else data-aos="fade-in">
+<div class="container-fluid">
+  <div class="row">
+        <div
+          class="
+            col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-6 col-xs-12 col-12
+            mt-4
+            mb-4
+            mx-auto
+          "
+          v-for="storeproduct in storeproducts"
+          v-bind:key="storeproduct.id"
+        >
+          <router-link
+            id="routeLink"
+            v-bind:to="'/productdetails/' + storeproduct.id"
+          >
+            <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
+            <div
+              class="card mx-auto storeCard carousel__item"
+              style="width: 18rem"
+            >
+              <img :src="storeproduct.image" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="storeCard_card_category">
+                  {{ storeproduct.category }}
+                </h5>
+                <h5 class="card-title">
+                  <p>{{ storeproduct.title }}</p>
+                  <!-- <a href=""
+                    ><router-link to="/ProductDetails">{{
+                      
+                    }}</router-link></a
+                  > -->
+                </h5>
+                <!-- <div>
+                  <p class="latestProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
+                  <br />
+                </div> -->
+                <div>
+                  <p class="storeCard_card_info">
+                    {{ storeproduct.price }}
+                  </p>
+                </div>
+                <!-- <div class="btn btn-primary addToCartBtn">
+                  <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
+                </div> -->
+              </div>
+            </div>
+            <!-- </a> -->
+          </router-link>
+        </div>
+  </div>
+</div>
+
       </div>
     </div>
   </div>
 </template>
 <script>
+import "css-skeletons";
 export default {
   name: "StoreCard",
   data() {
     return {
-      storecards: [
-        {
-          id: 1,
-          category: "Cleaning",
-          name: "Purple Boots",
-          price: "Tsh 15,000",
-        },
-        {
-          id: 2,
-          category: "Repairing",
-          name: "Green Boots",
-          price: "Tsh 17,900",
-        },
-        {
-          id: 3,
-          category: "Fixing",
-          name: "Orange Boots",
-          price: "Tsh 12,810",
-        },
-        {
-          id: 4,
-          category: "Fixing",
-          name: "Yellow Boots",
-          price: "Tsh 19,810",
-        },
-        {
-          id: 5,
-          category: "Not Fixing",
-          name: "Yellow Boots",
-          price: "Tsh 21,700",
-        },
-      ],
+      data: 9,
     };
+  },
+      mounted() {
+    this.$store.dispatch("loadStoreProducts");
+  },
+  computed: {
+    loader() {
+      return this.$store.getters.loader;
+    },
+    storeproducts() {
+      return this.$store.getters.storeproducts;
+    },
   },
 };
 </script>
@@ -157,12 +181,9 @@ export default {
 
 /* SUPER SMALL SIZED DEVICES */
 @media only screen and (max-width: 320px) {
-
-
 }
 
 /* TABLET SIZED DEVICES */
 @media only screen and (max-width: 768px) {
-
 }
 </style>

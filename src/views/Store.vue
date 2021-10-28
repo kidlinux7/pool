@@ -9,7 +9,7 @@
           col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12
         "
       >
-        <SaleOff></SaleOff>
+        <StoreInsightCard></StoreInsightCard>
       </div>
     </div>
 
@@ -59,7 +59,7 @@
                           aria-describedby="inputGroup-sizing-sm"
                           id="rangeField"
                         />
-                        <h6 style="margin-top:30px;">to</h6>
+                        <h6 style="margin-top: 30px">to</h6>
                         <input
                           type="text"
                           class="form-control"
@@ -133,14 +133,15 @@
     <div class="row" id="topSection">
       <div
         class="
-          col-xxl-2 col-xl-2 col-lg-2
+          col-xxl-3 col-xl-3 col-lg-3
           d-sm-none d-none d-md-none d-lg-block d-xl-block d-xxl-block
         "
       >
         <FilterSection></FilterSection>
+        <SideProductList></SideProductList>
       </div>
 
-      <div class="col-xxl-10 col-xl-10 col-lg-10 mb-5">
+      <div class="col-xxl-9 col-xl-9 col-lg-9 mb-5">
         <StoreCard></StoreCard>
       </div>
     </div>
@@ -149,18 +150,21 @@
 </template>
 
 <script>
-import SaleOff from "@/components/SaleOff.vue";
+import StoreInsightCard from "@/components/StoreInsightCard.vue";
 import FilterSection from "@/components/FilterSection.vue";
 import StoreCard from "@/components/StoreCard.vue";
+import SideProductList from "@/components/SideProductList.vue";
 import Footer from "@/components/Footer.vue";
 export default {
   name: "Store",
   components: {
-    SaleOff,
+    StoreInsightCard,
     FilterSection,
     StoreCard,
     Footer,
+    SideProductList,
   },
+  
 };
 </script>
 <style scoped>
@@ -211,10 +215,10 @@ input {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-#rangeField{
+#rangeField {
   height: 55px;
   margin-top: 10px;
   border-radius: 10px;
-  margin:10px;
+  margin: 10px;
 }
 </style>

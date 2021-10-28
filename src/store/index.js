@@ -9,14 +9,23 @@ let baseUrl = 'https://f45a-102-64-64-8.ngrok.io/'
 export default new vuex.Store({
     state: {
         loader: false,
+        sideLoader:false,
+
         latestproducts: [],
         featuredproducts: [],
         bestsellingproducts: [],
         weeklydiscountproducts: [],
         blogsnippest: [],
+        storeproducts:[],
+        sidestoreproductslatest:[],
+        sidestoreproductsbestselling:[],
+        sidestoreproductslatest:[],
+        sidestoreproductsdiscount:[],
+
 
     },
     mutations: {
+
         // Fetching Latest Products
         SET_LATEST_PRODUCTS(state, latestproducts) {
             state.latestproducts = latestproducts
@@ -42,10 +51,27 @@ export default new vuex.Store({
             state.blogsnippest = blogsnippest
         },
 
+        //Fetching Main Store Products
+        SET_STORE_PRODUCTS(state, storeproducts){
+            state.storeproducts = storeproducts
+        },
+
+        //Fetching Side Store Best Selling Products
+        SET_SIDE_STORE_BEST_SELLING_PRODUCTS(state,sidestoreproductsbestselling){
+            state.sidestoreproductsbestselling = sidestoreproductsbestselling
+        },
+
+
         //Loading Indicator
         SET_LOADER_STATE(state, newloader) {
             state.loader = newloader
+        },
+
+        //Side Loading Indicator
+        SET_SIDE_LOADER_STATE(state, newsideLoader) {
+            state.sideLoader = newsideLoader
         }
+
     },
     actions: {
 
@@ -133,10 +159,71 @@ export default new vuex.Store({
                     console.log(error)
                 })
 
-        }
+        },
+
+        loadStoreProducts({ commit }) {
+            commit('SET_LOADER_STATE', true)
+            axios
+                .get('https://fakestoreapi.com/products')
+                .then(data => {
+                     console.log(data.data)
+                    let storeproducts = data.data
+                    commit('SET_STORE_PRODUCTS', storeproducts)
+                    commit('SET_LOADER_STATE', false)
+
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+
+        },
+
+        loadStoreProductsWaterPump({ commit }) {
+            commit('SET_LOADER_STATE', true)
+            axios
+                .get('https://fakestoreapi.com/products?limit=5')
+                .then(data => {
+                     console.log(data.data)
+                    let storeproducts = data.data
+                    commit('SET_STORE_PRODUCTS', storeproducts)
+                    commit('SET_LOADER_STATE', false)
+
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+
+        },
+
+        loadSideStoreBestSellingProducts({ commit }) {
+            commit('SET_SIDE_LOADER_STATE', true)
+            axios
+                .get('https://fakestoreapi.com/products?limit=5')
+                .then(data => {
+                     console.log(data.data)
+                    let sidestoreproductsbestselling = data.data
+                    commit('SET_SIDE_STORE_BEST_SELLING_PRODUCTS', sidestoreproductsbestselling)
+                    commit('SET_SIDE_LOADER_STATE', false)
+
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+
+        },
+
+
 
     },
     getters: {
+        sidestoreproductsbestselling(state) {
+            return state.sidestoreproductsbestselling
+        },
+
+        storeproducts(state) {
+            return state.storeproducts
+        },
+
         latestproducts(state) {
             return state.latestproducts
         },
@@ -154,6 +241,9 @@ export default new vuex.Store({
         },
         loader(state) {
             return state.loader
+        },
+        sideLoader(state){
+            return state.sideLoader
         }
     }
 })
