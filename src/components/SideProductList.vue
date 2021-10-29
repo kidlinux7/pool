@@ -1,6 +1,8 @@
 <template>
   <h6 class="storeCategory">Best Selling</h6>
   <div v-if="sideLoader">
+    <div  v-for="index in 3" :key="index">
+      <div class="skeleton skeleton-line mt-2" style="--l-h: 19px; --c-w: 200px; --lines:1;"></div>
       <div class="column" v-for="index in 5" :key="index">
         <div class="d-flex justify-content-start" >
           <div
@@ -10,6 +12,7 @@
           <div class="skeleton skeleton-line mt-2" style="--l-h: 19px; --lines:3;"></div>
         </div>
       </div>
+</div>
 
   </div>
 
@@ -50,6 +53,46 @@
         </div>
       </div>
     </div>
+
+    <div id="sideBestSelling" class="mx-auto">
+  <h6 class="storeCategory mt-3">Latest</h6>
+
+      <div
+        class="card mb-3 position-relative"
+        style="max-width: 540px"
+        v-for="sideLatest in sidestoreproductslatest"
+        v-bind:key="sideLatest.id"
+      >
+        <span
+          class="
+            position-absolute
+            top-0
+            start-0
+            translate-middle
+            badge
+            bg-dangerus
+          "
+          ><span class="visually-hidden">unread messages</span></span
+        >
+
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              :src="sideLatest.image"
+              class="img-fluid rounded-start"
+              alt="..."
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-left">
+              <h5 class="card-title">{{ sideLatest.title }}</h5>
+              <p class="card-text">Tsh {{ sideLatest.price }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -58,6 +101,8 @@ export default {
   name: "SideProductList",
   mounted() {
     this.$store.dispatch("loadSideStoreBestSellingProducts");
+    this.$store.dispatch("loadSideStoreLatestProducts");
+    
   },
   computed: {
     sideLoader() {
@@ -67,6 +112,10 @@ export default {
     sidestoreproductsbestselling() {
       return this.$store.getters.sidestoreproductsbestselling;
     },
+
+    sidestoreproductslatest(){
+      return this.$store.getters.sidestoreproductslatest;
+    }
   },
 };
 </script>

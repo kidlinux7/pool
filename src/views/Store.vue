@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <!-- <div class="row">
-      <img src="../assets/store.jpg" class="storeImage" alt="..." />
-    </div> -->
-    <div class="row align-items-center" id="topSection">
+    <div class="row">
+      <img src="../assets/poster2.jpg" class="storeImage" alt="..." />
+    </div>
+    <div class="row align-items-center" >
       <div
         class="
           col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12
         "
       >
-        <StoreInsightCard></StoreInsightCard>
+        <!-- <StoreInsightCard></StoreInsightCard> -->
       </div>
     </div>
 
@@ -35,25 +35,13 @@
             </div>
             <div class="modal-body">
               <div class="d-flex flex-column">
-                <div class="d-flex flex-row">
-                  <div class="d-flex flex-column">
-                    <h6 class="d-flex flex-row">Pick a Color</h6>
-                    <div class="d-flex flex-row">
-                      <div id="color"></div>
-                      <div id="color"></div>
-                      <div id="color"></div>
-                      <div id="color"></div>
-                    </div>
-                  </div>
-                </div>
-
                 <div class="d-flex flex-row mt-4">
                   <div class="d-flex flex-column">
                     <h6 class="d-flex flex-row">Price Range</h6>
                     <div class="d-flex justify-content-between">
                       <div class="input-group input-group-sm mb-3">
                         <input
-                          type="text"
+                          type="number"
                           class="form-control"
                           aria-label="Sizing example input"
                           aria-describedby="inputGroup-sizing-sm"
@@ -61,7 +49,7 @@
                         />
                         <h6 style="margin-top: 30px">to</h6>
                         <input
-                          type="text"
+                          type="number"
                           class="form-control"
                           aria-label="Sizing example input"
                           aria-describedby="inputGroup-sizing-sm"
@@ -83,7 +71,7 @@
       <div class="row">
         <div class="col-sm-10 col-xs-10 col-10">
           <div class="d-flex flex-row mt-5">
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 ">
               <input
                 type="search"
                 class="form-control"
@@ -114,10 +102,18 @@
       <div class="row">
         <div class="col-sm-12 col-xs-12 col-12 categorySlide">
           <div class="d-flex justify-content-start mt-1">
-            <button type="button" class="btn btn-primary storeCategory">
+            <button
+              type="button"
+              class="btn btn-primary storeCategory"
+              v-on:click="$store.dispatch('loadStoreProducts')"
+            >
               Apparati
             </button>
-            <button type="button" class="btn btn-primary storeCategory">
+            <button
+              type="button"
+              class="btn btn-primary storeCategory"
+              v-on:click="$store.dispatch('loadStoreProductsWaterPump')"
+            >
               WaterPumps
             </button>
             <button type="button" class="btn btn-primary storeCategory">
@@ -141,7 +137,7 @@
         <SideProductList></SideProductList>
       </div>
 
-      <div class="col-xxl-9 col-xl-9 col-lg-9 mb-5">
+      <div class="col-xxl-9 col-xl-9 col-lg-9 mb-5 mx-auto">
         <StoreCard></StoreCard>
       </div>
     </div>
@@ -164,10 +160,12 @@ export default {
     Footer,
     SideProductList,
   },
-  
 };
 </script>
 <style scoped>
+a {
+  text-decoration: none;
+}
 #color {
   height: 50px;
   width: 50px;

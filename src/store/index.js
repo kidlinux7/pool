@@ -19,7 +19,6 @@ export default new vuex.Store({
         storeproducts:[],
         sidestoreproductslatest:[],
         sidestoreproductsbestselling:[],
-        sidestoreproductslatest:[],
         sidestoreproductsdiscount:[],
 
 
@@ -60,7 +59,12 @@ export default new vuex.Store({
         SET_SIDE_STORE_BEST_SELLING_PRODUCTS(state,sidestoreproductsbestselling){
             state.sidestoreproductsbestselling = sidestoreproductsbestselling
         },
+        
 
+        //Fetching Side Store Best Selling Products
+        SET_SIDE_STORE_LATEST_PRODUCTS(state,sidestoreproductslatest){
+            state.sidestoreproductslatest = sidestoreproductslatest
+        },
 
         //Loading Indicator
         SET_LOADER_STATE(state, newloader) {
@@ -166,7 +170,7 @@ export default new vuex.Store({
             axios
                 .get('https://fakestoreapi.com/products')
                 .then(data => {
-                     console.log(data.data)
+                    //  console.log(data.data)
                     let storeproducts = data.data
                     commit('SET_STORE_PRODUCTS', storeproducts)
                     commit('SET_LOADER_STATE', false)
@@ -183,7 +187,7 @@ export default new vuex.Store({
             axios
                 .get('https://fakestoreapi.com/products?limit=5')
                 .then(data => {
-                     console.log(data.data)
+                    //  console.log(data.data)
                     let storeproducts = data.data
                     commit('SET_STORE_PRODUCTS', storeproducts)
                     commit('SET_LOADER_STATE', false)
@@ -200,9 +204,26 @@ export default new vuex.Store({
             axios
                 .get('https://fakestoreapi.com/products?limit=5')
                 .then(data => {
-                     console.log(data.data)
+                    //  console.log(data.data)
                     let sidestoreproductsbestselling = data.data
                     commit('SET_SIDE_STORE_BEST_SELLING_PRODUCTS', sidestoreproductsbestselling)
+                    commit('SET_SIDE_LOADER_STATE', false)
+
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+
+        },
+
+        loadSideStoreLatestProducts({ commit }) {
+            commit('SET_SIDE_LOADER_STATE', true)
+            axios
+                .get('https://fakestoreapi.com/products/category/electronics')
+                .then(data => {
+                    //  console.log(data.data)
+                    let sidestoreproductslatest = data.data
+                    commit('SET_SIDE_STORE_LATEST_PRODUCTS', sidestoreproductslatest)
                     commit('SET_SIDE_LOADER_STATE', false)
 
                 })
@@ -216,6 +237,9 @@ export default new vuex.Store({
 
     },
     getters: {
+        sidestoreproductslatest(state){
+            return state.sidestoreproductslatest
+        },
         sidestoreproductsbestselling(state) {
             return state.sidestoreproductsbestselling
         },
