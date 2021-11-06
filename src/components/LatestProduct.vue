@@ -44,25 +44,25 @@
         :breakpoints="breakpoints"
         :settings="settings"
         :autoplay="2200"
-        :wrap-around="true"
+        :wrap-around="false"
       >
         <Slide
           v-for="latestproduct in latestproducts"
           v-bind:key="latestproduct.id" 
         >
-          <router-link id="routeLink" v-bind:to="'/productdetails/' + latestproduct.id">
+          <!-- <router-link id="routeLink" v-bind:to="'/productdetails/' + latestproduct.id"> -->
             <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
             <div
               class="card mx-auto latestProduct carousel__item"
               style="width: 18rem"
             >
-              <img :src="this.baseUrl + latestproduct.cover_image" class="card-img-top" alt="..." />
+              <img :src="latestproduct.image" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="latestProduct_card_category">
                   {{ latestproduct.category }}
                 </h5>
                 <h5 class="card-title ">
-                  <p>{{latestproduct.name}}</p>
+                  <p>{{latestproduct.title}}</p>
                   <!-- <a href=""
                     ><router-link to="/ProductDetails">{{
                       
@@ -75,16 +75,16 @@
                 </div> -->
                 <div>
                   <p class="latestProduct_card_info">
-                    {{ latestproduct.price }}
+                   Tsh {{ latestproduct.price }}
                   </p>
                 </div>
-                <!-- <div class="btn btn-primary addToCartBtn">
+                <div class="btn btn-primary addToCartBtn" @click="addToCart([latestproduct.title,latestproduct.price,latestproduct.image])">
                   <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
-                </div> -->
+                </div>
               </div>
             </div>
             <!-- </a> -->
-          </router-link>
+          <!-- </router-link> -->
         </Slide>
       </Carousel>
     </div>
@@ -104,7 +104,7 @@ export default {
   },
   data() {
     return {
-      baseUrl : 'https://f45a-102-64-64-8.ngrok.io',
+      baseUrl : 'https://b796-41-75-220-253.ngrok.io',
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -124,6 +124,19 @@ export default {
       },
     };
   },
+
+methods:{
+  addToCart(data){
+    console.log(data)
+    this.$store.dispatch('addProductToCart', {
+      title: data[0],
+      price:data[1],
+      image:data[2],
+      quantity: 1
+      });
+  }
+},
+
   mounted() {
     this.$store.dispatch("loadLatestProducts");
   },
@@ -134,6 +147,7 @@ export default {
     latestproducts() {
       return this.$store.getters.latestproducts;
     },
+
   },
 };
 </script>
@@ -141,12 +155,7 @@ export default {
 #routeLink{
   text-decoration: none;
 }
-.latestProduct:hover {
-  /* border-color: whitesmoke; */
-  padding: 3px;
-  transition: 0.3s ease-in-out;
-  box-shadow: 10px 10px 20px 5px rgb(235, 233, 233);
-}
+
 .latestProduct_card_category {
   color: rgb(173, 173, 173);
   text-align: left;

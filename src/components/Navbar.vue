@@ -5,7 +5,6 @@
         ><router-link to="/">💦Pool</router-link></a
       >
 
-
       <div
         class="
           collapse
@@ -43,14 +42,18 @@
         </ul>
       </div>
 
-            <button
-        class="btn btn-transparent d-flex"
+      <button
+        class="btn btn-transparent d-flex position-relative"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight"
       >
-        <i style="color:grey;" class="fa-solid fa-cart-shopping"></i>
+        <i style="color: grey" class="fa-solid fa-cart-shopping"></i>
+   
+        <span class="position-absolute top-0 start-100 translate-middle p-2 redDot ">
+         <h6 style="color:white;font-weight:bold;font-size:0.7em;margin-bottom:10px;"> {{cartItemCount}} </h6>
+  </span>
       </button>
       <div
         class="offcanvas offcanvas-end"
@@ -59,10 +62,7 @@
         aria-labelledby="offcanvasRightLabel"
       >
         <div class="offcanvas-header">
-          <h5 id="offcanvasRightLabel">My Cart
-
-            
-          </h5>
+          <h5 id="offcanvasRightLabel">My Cart</h5>
           <button
             type="button"
             class="btn-close text-reset"
@@ -70,7 +70,9 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="offcanvas-body">Shopping List</div>
+        <div class="offcanvas-body">
+          <Cart></Cart>
+        </div>
       </div>
     </div>
   </nav>
@@ -107,12 +109,29 @@
   </div>
 </template>
 <script>
+import Cart from "@/components/Cart.vue";
 export default {
   name: "Navbar",
+  components:{
+    Cart
+  },
+  computed:{
+    cartItemCount(){
+      return this.$store.getters.cartItemCount
+    }
+  }
 };
 </script>
 <style scoped>
-.router-link-active{
+.redDot{
+  height: 25px;
+  width: 25px;
+  background-color: red;
+  border-radius: 50px;
+  margin-top: 5px;
+  
+}
+.router-link-active {
   color: rgb(143, 143, 143);
 }
 .nav_ {

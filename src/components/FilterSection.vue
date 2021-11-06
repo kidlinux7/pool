@@ -1,12 +1,12 @@
 <template>
-  <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-3">
+  <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-3" >
     <div class="d-flex flex-column">
       <div class="d-flex flex-column categoryGroup">
         <h4 class="storeCategory">Categories</h4>
-        <h5 class="storeCategoryList" v-on:click="$store.dispatch('loadStoreProducts')">Apparati</h5>
-        <h5 class="storeCategoryList" v-on:click="$store.dispatch('loadStoreProductsWaterPump')">WaterPumps</h5>
-        <h5 class="storeCategoryList">Uniforms</h5>
-        <h5 class="storeCategoryList">Chemicals</h5>
+        <h5 style="cursor: pointer;" class="storeCategoryList" v-on:click="$store.dispatch('loadStoreProducts')">Apparati</h5>
+        <h5 style="cursor: pointer;" class="storeCategoryList" v-on:click="$store.dispatch('loadStoreProductsWaterPump')">WaterPumps</h5>
+        <h5 style="cursor: pointer;" class="storeCategoryList">Uniforms</h5>
+        <h5 style="cursor: pointer;" class="storeCategoryList">Chemicals</h5>
       </div>
 
       <div class="d-flex flex-column priceRange">
@@ -31,10 +31,10 @@
 <script>
 export default {
   name: "FilterSection",
-
 };
 </script>
 <style scoped>
+
 .colorCircleName {
   font-size: 1.3em;
   margin-bottom: 0px;
@@ -62,5 +62,7 @@ export default {
 .storeCategoryList {
   margin-top: 20px;
   color: rgb(173, 173, 173);
+  font-size: 1em;
+  text-align: start;
 }
 </style>

@@ -1,15 +1,12 @@
 <template>
   <div class="container">
-    <div class="row">
-      <img src="../assets/poster2.jpg" class="storeImage" alt="..." />
-    </div>
     <div class="row align-items-center" >
       <div
         class="
           col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12
         "
       >
-        <!-- <StoreInsightCard></StoreInsightCard> -->
+        <StoreInsightCard></StoreInsightCard>
       </div>
     </div>
 
@@ -71,7 +68,7 @@
       <div class="row">
         <div class="col-sm-10 col-xs-10 col-10">
           <div class="d-flex flex-row mt-5">
-            <div class="input-group mb-3 ">
+            <div class="input-group mb-3">
               <input
                 type="search"
                 class="form-control"
@@ -104,7 +101,7 @@
           <div class="d-flex justify-content-start mt-1">
             <button
               type="button"
-              class="btn btn-primary storeCategory"
+              class="btn btn-primary storeCategory" 
               v-on:click="$store.dispatch('loadStoreProducts')"
             >
               Apparati
@@ -126,12 +123,13 @@
         </div>
       </div>
     </div>
-    <div class="row" id="topSection">
+    <div class="row mt-2">
       <div
         class="
           col-xxl-3 col-xl-3 col-lg-3
           d-sm-none d-none d-md-none d-lg-block d-xl-block d-xxl-block
         "
+        
       >
         <FilterSection></FilterSection>
         <SideProductList></SideProductList>
@@ -163,6 +161,18 @@ export default {
 };
 </script>
 <style scoped>
+.bigSearch{
+  margin-left: 30vw;
+  margin-right: 5vw;
+
+}
+
+#fixedSection{
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 160px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+}
 a {
   text-decoration: none;
 }

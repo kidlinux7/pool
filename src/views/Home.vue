@@ -1,19 +1,21 @@
 <template>
   <div class="container">
-    <div class="row align-items-center" id="topSection">
+    <div class="row align-items-center " id="topSection" >
       <div
         class="
-          col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12
+          col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12
           order-sm-1
         "
       >
         <img
-          src="../assets/gumboots.png"
-          class="img-fluid"
+          src="../assets/poster.png"
+          class="img-responsive"
           alt="product Image"
+          style="width:100%;height:auto;border-radius:10px;"
         />
+
       </div>
-      <div
+      <!-- <div
         class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
         <h1 class="landingHeader">Orange Gum Boots</h1>
         <p class="landingDescription">
@@ -28,7 +30,7 @@
           </button>
         </div>
         
-      </div>
+      </div> -->
     </div>
 
     <FeaturedProduct></FeaturedProduct>

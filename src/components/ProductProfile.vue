@@ -150,16 +150,17 @@
         >
           <div class="d-flex flex-column">
             <img
-              :src="this.baseUrl + productprofile.cover_image"
+              :src="baseUrl + productprofile.cover_image"
               class="img-fluid mainImage m-5"
               alt="product Image"
             />
             <div class="d-flex flex-row" >
-              <div class="imgView1" v-on:click="updateImage(image)" v-for="image in productprofile.product_image" v-bind:key="image">
+              <div class="imgView1"  v-on:click="updateImage(image)" v-for="image in productprofile.product_image" v-bind:key="image">
                 <img
-                  :src="this.baseUrl + image"
+                  :src="baseUrl + image"
                   class="img-fluid"
                   alt="product Image"
+                
                 />
               </div>
             </div>
@@ -180,7 +181,7 @@
               <h6 class="card-subtitle mb-2 text-muted producer mt-0">
                 {{ productprofile.brand }}
               </h6>
-              <h6 class="card-subtitle mb-2 text-muted mt-3">⭐⭐⭐⭐⭐</h6>
+              <!-- <h6 class="card-subtitle mb-2 text-muted mt-3">⭐⭐⭐⭐⭐</h6> -->
               <h6 class="card-subtitle mb-2 text-muted productPrice mt-3">
                 Tsh {{ productprofile.sell_price }}
               </h6>
@@ -225,16 +226,21 @@
     </div>
   </div>
   <LatestProduct></LatestProduct>
+  <Footer></Footer>
 </template>
 <script>
 import LatestProduct from "@/components/LatestProduct.vue";
+import Footer from "@/components/Footer.vue";
 import axios from "axios";
 import "css-skeletons";
 export default {
   name: "ProductProfile",
+  components:{
+    Footer
+  },
   data() {
     return {
-      baseUrl:"https://f45a-102-64-64-8.ngrok.io",
+      baseUrl:"https://b796-41-75-220-253.ngrok.io",
       id: this.$route.params.id,
       productprofile: [],
       loader: false,
@@ -243,7 +249,7 @@ export default {
   mounted() {
     this.loader = true;
     axios
-      .get("https://f45a-102-64-64-8.ngrok.io/inventory/api/product/details?product=9")
+      .get("https://b796-41-75-220-253.ngrok.io/inventory/api/product/details?product=9")
       .then((data) => {
         // console.log(data.data);
         this.productprofile = data.data;
@@ -266,15 +272,15 @@ export default {
   //   this.$store.dispatch("loadIndividualProduct")
   // },
 
-  // computed:{
-  //       loader() {
-  //     return this.$store.getters.loader;
-  //   },
-  //   productprofile(){
-  //     return this.$store.getters.productprofile;
-  //   }
+  computed:{
+      loader() {
+      return this.$store.getters.loader;
+    },
+    // baseUrl(){
+    //   return this.$store.getters.baseUrl;
+    // }
 
-  // }
+  }
 };
 </script>
 <style scoped>

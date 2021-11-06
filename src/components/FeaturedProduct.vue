@@ -75,7 +75,7 @@
                 </div> -->
                 <div>
                   <p class="featuredProduct_card_info">
-                    {{ featuredproduct.price }}
+                    {{ featuredproduct.sell_price }}
                   </p>
                 </div>
                 <!-- <div class="btn btn-primary addToCartBtn">
@@ -104,7 +104,7 @@ export default {
   },
   data() {
     return {
-      baseUrl : 'https://f45a-102-64-64-8.ngrok.io',
+      baseUrl : 'https://b796-41-75-220-253.ngrok.io',
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -146,6 +146,11 @@ export default {
   border-color: transparent;
 }
 
+.card-title{
+    color: rgb(68, 68, 68);
+  text-decoration: none !important;
+  font-weight: bold;
+}
 
 .btn{
   font-family: "Poppins", sans;

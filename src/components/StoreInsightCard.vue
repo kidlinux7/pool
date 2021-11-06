@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <div class="row mt-1">
+    <div class="row" id="topSection">
       <div
         class="
           col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12
         "
       >
-        <Carousel
+        <!-- <Carousel
           :breakpoints="breakpoints"
           :settings="settings"
           :autoplay="4500"
@@ -16,9 +16,15 @@
             v-for="storeInsight in storeInsights"
             v-bind:key="storeInsight.id"
           >
-            <img src="../assets/poster2.jpg" class="img-fluid" alt="..." />
+          <img :src="storeInsight.image"  class="img-responsive" style="border-radius:20px;" alt="..."/>
           </Slide>
-        </Carousel>
+        </Carousel> -->
+               <img
+          src="../assets/poster.png"
+          class="img-responsive"
+          alt="product Image"
+          style="width:100%;height:auto;border-radius:10px;"
+        />
       </div>
     </div>
   </div>
@@ -38,27 +44,19 @@ export default {
       storeInsights: [
         {
           id: 1,
-          title: "Cleaning",
-          image: "../assets/poster2.jpg",
-          description: "Tsh 10,000",
+          image: "../assets/poster.png",
         },
         {
           id: 2,
-          title: "Cleaning",
-          image: "../assets/poster2.jpg",
-          description: "Tsh 15,000",
+          image: "../assets/poster.png",
         },
         {
           id: 3,
-          title: "Cleaning",
-          image: "../assets/poster2.jpg",
-          description: "Tsh 15,000",
+          image: "../assets/poster.png",
         },
         {
           id: 4,
-          title: "Cleaning",
-          image: "../assets/poster2.jpg",
-          description: "Tsh 15,000",
+          image: "../assets/poster.png",
         },
       ],
       settings: {

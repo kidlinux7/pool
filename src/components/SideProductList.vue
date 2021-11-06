@@ -39,15 +39,15 @@
         <div class="row g-0">
           <div class="col-md-4">
             <img
-              :src="sideBestSelling.image"
+              :src="this.baseUrl + sideBestSelling.cover_image"
               class="img-fluid rounded-start"
               alt="..."
             />
           </div>
           <div class="col-md-8">
             <div class="card-body text-left">
-              <h5 class="card-title">{{ sideBestSelling.title }}</h5>
-              <p class="card-text">Tsh {{ sideBestSelling.price }}</p>
+              <h5 class="card-title">{{ sideBestSelling.name }}</h5>
+              <p class="card-text">Tsh {{ sideBestSelling.sell_price }}</p>
             </div>
           </div>
         </div>
@@ -78,15 +78,15 @@
         <div class="row g-0">
           <div class="col-md-4">
             <img
-              :src="sideLatest.image"
+              :src="this.baseUrl + sideLatest.cover_image"
               class="img-fluid rounded-start"
               alt="..."
             />
           </div>
           <div class="col-md-8">
             <div class="card-body text-left">
-              <h5 class="card-title">{{ sideLatest.title }}</h5>
-              <p class="card-text">Tsh {{ sideLatest.price }}</p>
+              <h5 class="card-title">{{ sideLatest.name }}</h5>
+              <p class="card-text">Tsh {{ sideLatest.sell_price }}</p>
             </div>
           </div>
         </div>
@@ -99,6 +99,12 @@
 <script>
 export default {
   name: "SideProductList",
+  data(){
+    return{
+      baseUrl : 'https://b796-41-75-220-253.ngrok.io',
+
+    }
+  },
   mounted() {
     this.$store.dispatch("loadSideStoreBestSellingProducts");
     this.$store.dispatch("loadSideStoreLatestProducts");

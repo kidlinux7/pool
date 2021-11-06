@@ -45,13 +45,13 @@
                 class="card storeCard carousel__item"
                 style="min-width: 13rem"
               >
-                <img :src="storeproduct.image" class="card-img-top" alt="..." />
+                <img :src="this.baseUrl + storeproduct.cover_image" class="card-img-top" alt="..." />
                 <div class="card-body">
                   <h5 class="storeCard_card_category">
                     {{ storeproduct.category }}
                   </h5>
                   <h5 class="storCard_title card-title">
-                    <p>{{ storeproduct.title }}</p>
+                    <p>{{ storeproduct.name }}</p>
                     <!-- <a href=""
                     ><router-link to="/ProductDetails">{{
                       
@@ -64,7 +64,7 @@
                 </div> -->
                   <div>
                     <p class="storeCard_card_info">
-                      Tsh {{ storeproduct.price }}
+                      Tsh {{ storeproduct.sell_price }}
                     </p>
                   </div>
                   <!-- <div class="btn btn-primary addToCartBtn">
@@ -85,6 +85,12 @@
 import "css-skeletons";
 export default {
   name: "StoreCard",
+  data(){
+    return{
+      baseUrl : 'https://b796-41-75-220-253.ngrok.io',
+
+    }
+  },
   mounted() {
     this.$store.dispatch("loadStoreProducts");
   },
