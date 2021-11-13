@@ -4,6 +4,7 @@ import Store from "../views/Store.vue";
 import Poolcare from "../views/Poolcare.vue";
 import Blog from "../views/Blog.vue";
 import ProductDetails from "../views/ProductDetails.vue";
+import Checkout from "../views/Checkout.vue";
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     path: "/productdetails/:id",
     name: "ProductDetails",
     component: ProductDetails,
+  },
+  {
+    path: "/checkout",
+    name: "Checkout",
+    component: Checkout,
   },
   {
     path: "/poolcare",

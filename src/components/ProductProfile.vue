@@ -240,7 +240,7 @@ export default {
   },
   data() {
     return {
-      baseUrl:"https://b796-41-75-220-253.ngrok.io",
+      baseUrl:"http://127.0.0.1:8000/",
       id: this.$route.params.id,
       productprofile: [],
       loader: false,
@@ -249,7 +249,7 @@ export default {
   mounted() {
     this.loader = true;
     axios
-      .get("https://b796-41-75-220-253.ngrok.io/inventory/api/product/details?product=9")
+      .get("http://127.0.0.1:8000/inventory/api/product/details?product=9")
       .then((data) => {
         // console.log(data.data);
         this.productprofile = data.data;

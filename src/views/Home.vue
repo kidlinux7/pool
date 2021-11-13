@@ -13,24 +13,7 @@
           alt="product Image"
           style="width:100%;height:auto;border-radius:10px;"
         />
-
       </div>
-      <!-- <div
-        class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
-        <h1 class="landingHeader">Orange Gum Boots</h1>
-        <p class="landingDescription">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, at
-          laboriosam sint eaque, enim ratione sapiente cum optio, quisquam
-          veritatis numquam. Atque qui, nemo esse laboriosam nesciunt eum
-          repellat eveniet
-        </p>
-        <div class="d-grid gap-2 col-6 mb-5">
-          <button class="btn btn-primary getStarted" type="button">
-            Get Started
-          </button>
-        </div>
-        
-      </div> -->
     </div>
 
     <FeaturedProduct></FeaturedProduct>
@@ -71,8 +54,6 @@ export default {
 </script>
 
 <style>
-/* Get Started Button */
-
 /* Top Section */
 #topSection {
   margin-top: 10vh;

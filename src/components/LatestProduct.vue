@@ -48,42 +48,51 @@
       >
         <Slide
           v-for="latestproduct in latestproducts"
-          v-bind:key="latestproduct.id" 
+          v-bind:key="latestproduct.id"
         >
           <!-- <router-link id="routeLink" v-bind:to="'/productdetails/' + latestproduct.id"> -->
-            <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
-            <div
-              class="card mx-auto latestProduct carousel__item"
-              style="width: 18rem"
-            >
-              <img :src="latestproduct.image" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="latestProduct_card_category">
-                  {{ latestproduct.category }}
-                </h5>
-                <h5 class="card-title ">
-                  <p>{{latestproduct.title}}</p>
-                  <!-- <a href=""
+          <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
+          <div
+            class="card mx-auto latestProduct carousel__item"
+            style="width: 18rem"
+          >
+            <img :src="this.baseUrl + latestproduct.cover_image" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="latestProduct_card_category">
+                {{ latestproduct.category }}
+              </h5>
+              <h5 class="card-title">
+                <p>{{ latestproduct.name }}</p>
+                <!-- <a href=""
                     ><router-link to="/ProductDetails">{{
                       
                     }}</router-link></a
                   > -->
-                </h5>
-                <!-- <div>
+              </h5>
+              <!-- <div>
                   <p class="latestProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
                   <br />
                 </div> -->
-                <div>
-                  <p class="latestProduct_card_info">
-                   Tsh {{ latestproduct.price }}
-                  </p>
-                </div>
-                <div class="btn btn-primary addToCartBtn" @click="addToCart([latestproduct.title,latestproduct.price,latestproduct.image])">
-                  <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
-                </div>
+              <div>
+                <p class="latestProduct_card_info">
+                  Tsh {{ latestproduct.sell_price }}
+                </p>
+              </div>
+              <div
+                class="btn btn-primary addToCartBtn"
+                @click="
+                  addToCart([
+                    latestproduct.name,
+                    latestproduct.sell_price,
+                    latestproduct.cover_image,
+                  ])
+                "
+              >
+                <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
               </div>
             </div>
-            <!-- </a> -->
+          </div>
+          <!-- </a> -->
           <!-- </router-link> -->
         </Slide>
       </Carousel>
@@ -91,7 +100,6 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide } from "vue3-carousel";
@@ -104,7 +112,7 @@ export default {
   },
   data() {
     return {
-      baseUrl : 'https://b796-41-75-220-253.ngrok.io',
+      baseUrl: "http://127.0.0.1:8000",
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -125,17 +133,17 @@ export default {
     };
   },
 
-methods:{
-  addToCart(data){
-    console.log(data)
-    this.$store.dispatch('addProductToCart', {
-      title: data[0],
-      price:data[1],
-      image:data[2],
-      quantity: 1
+  methods: {
+    addToCart(data) {
+      // console.log(data)
+      this.$store.dispatch("addProductToCart", {
+        title: data[0],
+        price: data[1],
+        image: data[2],
+        quantity: 1,
       });
-  }
-},
+    },
+  },
 
   mounted() {
     this.$store.dispatch("loadLatestProducts");
@@ -152,7 +160,7 @@ methods:{
 };
 </script>
 <style scoped>
-#routeLink{
+#routeLink {
   text-decoration: none;
 }
 

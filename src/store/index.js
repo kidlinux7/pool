@@ -4,13 +4,13 @@ import axios from 'axios'
 // import Vue from 'vue';
 // Vue.use(vuex, axios)
 
-let baseUrl = 'https://b796-41-75-220-253.ngrok.io/'
-
+let baseUrl ='http://127.0.0.1:8000/'
 let cartItems = window.localStorage.getItem('cartItems')
-// let cartItemCount = window.localStorage.getItem('cartItemCount')
+let cartItemCount = window.localStorage.getItem('cartItemCount')
 
 export default new vuex.Store({
     state: {
+
         loader: false,
         sideLoader: false,
 
@@ -24,9 +24,9 @@ export default new vuex.Store({
         sidestoreproductsbestselling: [],
         sidestoreproductsdiscount: [],
 
-        // cartItems: [],
+        
         cartItems: cartItems ? JSON.parse(cartItems) : [],
-        // cartItemInfo:[]
+    
 
 
     },
@@ -84,13 +84,13 @@ export default new vuex.Store({
         },
 
         //Adding Products To Cart
-        SET_ADD_TO_CART(state, {title,price,image,quantity}) {
+        SET_ADD_TO_CART(state, { title, price, image, quantity }) {
             let productInCart = state.cartItems.find(item => {
-                return item.title ===  title
+                return item.title === title
             });
 
-            if (productInCart){
-                productInCart.quantity += quantity; 
+            if (productInCart) {
+                productInCart.quantity += quantity;
                 return;
             }
             state.cartItems.push({
@@ -101,15 +101,75 @@ export default new vuex.Store({
             })
         },
 
-        saveCart(state){
+        //Removing Product Cart
+        SET_REMOVE_FROM_CART(state, { title, price, image, quantity }) {
+            state.cartItems = state.cartItems.filter(item => {
+                return item.title !== title
+            });
+        },
+
+
+        //Increasing Product Quantity Inside the Cart
+        SET_ADD_QUANTITY_TO_CART(state, {title,quantity}) {
+            let productInCart = state.cartItems.find(item => {
+                return item.title === title
+            });
+
+            if (productInCart) {
+                 productInCart.quantity ++ ;
+                return;
+            }
+        },
+
+        //Decreasing Product Quantity Inside the Cart
+        SET_REMOVE_QUANTITY_TO_CART(state, {title,quantity}) {
+            let productInCart = state.cartItems.find(item => {
+                return item.title === title
+            });
+
+            if (productInCart) {
+                if (productInCart.quantity == 1){
+                    return productInCart.quantity == 1;
+
+                }
+                 productInCart.quantity -- ;
+                return;
+            }
+            state.cartItems.push({
+                title,
+                price,
+                image,
+                quantity
+            })
+        },
+
+
+        saveCart(state) {
             window.localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
             window.localStorage.setItem('cartItemCount', getters.cartItemCount)
         }
 
     },
     actions: {
-        addProductToCart( {commit}, {title,price,image,quantity} ) {
-            commit('SET_ADD_TO_CART', {title,price,image,quantity})
+        addProductToCart({ commit }, { title, price, image, quantity }) {
+            commit('SET_ADD_TO_CART', { title, price, image, quantity })
+            this.commit('saveCart')
+        },
+
+        removeProductFromCart({ commit }, { title, price, image, quantity }) {
+            commit('SET_REMOVE_FROM_CART', { title, price, image, quantity })
+            this.commit('saveCart')
+
+        },
+
+        addQuantityToCart({ commit },{ title,quantity }) {
+            commit('SET_ADD_QUANTITY_TO_CART', { title,quantity } )
+            this.commit('saveCart')
+
+        },
+
+        removeQuantityToCart({ commit },{ title,quantity }) {
+            commit('SET_REMOVE_QUANTITY_TO_CART', { title,quantity } )
             this.commit('saveCart')
 
         },
@@ -118,7 +178,7 @@ export default new vuex.Store({
             //Converting Loading State to True so it can disappear
             commit('SET_LOADER_STATE', true)
             axios
-                .get('https://fakestoreapi.com/products?limit=7')
+                .get(baseUrl + 'inventory/api/list/products')
                 .then(data => {
                     // console.log(data.data)
                     let latestproducts = data.data
@@ -130,7 +190,6 @@ export default new vuex.Store({
                     console.log(error)
                 })
         },
-
 
         loadFeaturedProducts({ commit }) {
             commit('SET_LOADER_STATE', true)
@@ -272,12 +331,12 @@ export default new vuex.Store({
 
     },
     getters: {
-        cartItemCount(state){
+        cartItemCount(state) {
             return state.cartItems.length;
         },
-        cartTotalPrice(state){
+        cartTotalPrice(state) {
             let total = 0;
-            state.cartItems.forEach(item =>{
+            state.cartItems.forEach(item => {
                 total += item.price * item.quantity
             })
             return total;
@@ -308,8 +367,11 @@ export default new vuex.Store({
         blogsnippest(state) {
             return state.blogsnippest
         },
-        cartItemInfo(state){
-            return state.cartItemInfo
+        // cartItemInfo(state) {
+        //     return state.cartItemInfo
+        // },
+        baseUrl(state){
+            return state.baseUrl
         },
         loader(state) {
             return state.loader

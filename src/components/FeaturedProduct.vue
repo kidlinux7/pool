@@ -75,7 +75,7 @@
                 </div> -->
                 <div>
                   <p class="featuredProduct_card_info">
-                    {{ featuredproduct.sell_price }}
+                  Tsh {{ featuredproduct.sell_price }}
                   </p>
                 </div>
                 <!-- <div class="btn btn-primary addToCartBtn">
@@ -104,7 +104,7 @@ export default {
   },
   data() {
     return {
-      baseUrl : 'https://b796-41-75-220-253.ngrok.io',
+      baseUrl : 'http://127.0.0.1:8000',
       settings: {
         itemsToShow: 1,
         snapAlign: "center",

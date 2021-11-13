@@ -16,6 +16,9 @@ export default {
 }
 </script>
 <style>
+.container{
+  scroll-behavior: smooth;
+}
 #app {
   font-family: 'Poppins';
   -webkit-font-smoothing: antialiased;

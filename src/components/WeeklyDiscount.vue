@@ -104,7 +104,7 @@ export default {
   },
   data() {
     return {
-      baseUrl : 'https://b796-41-75-220-253.ngrok.io',
+      baseUrl : 'http://127.0.0.1:8000',
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
