@@ -4,7 +4,7 @@ import axios from 'axios'
 // import Vue from 'vue';
 // Vue.use(vuex, axios)
 
-let baseUrl ='https://0768-169-239-3-230.ngrok.io/'
+let baseUrl = 'https://0768-169-239-3-230.ngrok.io/'
 let cartItems = window.localStorage.getItem('cartItems')
 let cartItemCount = window.localStorage.getItem('cartItemCount')
 
@@ -19,13 +19,12 @@ export default new vuex.Store({
         bestsellingproducts: [],
         weeklydiscountproducts: [],
         blogsnippest: [],
-        blogcard:[],
+        blogcards: [],
         storeproducts: [],
         sidestoreproductslatest: [],
         sidestoreproductsbestselling: [],
         sidestoreproductsdiscount: [],
 
-        
         cartItems: cartItems ? JSON.parse(cartItems) : [],
 
 
@@ -61,6 +60,13 @@ export default new vuex.Store({
         SET_STORE_PRODUCTS(state, storeproducts) {
             state.storeproducts = storeproducts
         },
+
+
+        //Fetching Blog Cards
+        SET_BLOG_CARDS(state, blogcards) {
+            state.blogcards = blogcards
+        },
+
 
         //Fetching Side Store Best Selling Products
         SET_SIDE_STORE_BEST_SELLING_PRODUCTS(state, sidestoreproductsbestselling) {
@@ -110,29 +116,29 @@ export default new vuex.Store({
 
 
         //Increasing Product Quantity Inside the Cart
-        SET_ADD_QUANTITY_TO_CART(state, {title,quantity}) {
+        SET_ADD_QUANTITY_TO_CART(state, { title, quantity }) {
             let productInCart = state.cartItems.find(item => {
                 return item.title === title
             });
 
             if (productInCart) {
-                 productInCart.quantity ++ ;
+                productInCart.quantity++;
                 return;
             }
         },
 
         //Decreasing Product Quantity Inside the Cart
-        SET_REMOVE_QUANTITY_TO_CART(state, {title,quantity}) {
+        SET_REMOVE_QUANTITY_TO_CART(state, { title, quantity }) {
             let productInCart = state.cartItems.find(item => {
                 return item.title === title
             });
 
             if (productInCart) {
-                if (productInCart.quantity == 1){
+                if (productInCart.quantity == 1) {
                     return productInCart.quantity == 1;
 
                 }
-                 productInCart.quantity -- ;
+                productInCart.quantity--;
                 return;
             }
             state.cartItems.push({
@@ -162,15 +168,32 @@ export default new vuex.Store({
 
         },
 
-        addQuantityToCart({ commit },{ title,quantity }) {
-            commit('SET_ADD_QUANTITY_TO_CART', { title,quantity } )
+        addQuantityToCart({ commit }, { title, quantity }) {
+            commit('SET_ADD_QUANTITY_TO_CART', { title, quantity })
             this.commit('saveCart')
 
         },
 
-        removeQuantityToCart({ commit },{ title,quantity }) {
-            commit('SET_REMOVE_QUANTITY_TO_CART', { title,quantity } )
+        removeQuantityToCart({ commit }, { title, quantity }) {
+            commit('SET_REMOVE_QUANTITY_TO_CART', { title, quantity })
             this.commit('saveCart')
+
+        },
+
+        loadBlogCards({commit}){
+            commit('SET_LOADER_STATE',true)
+            axios
+            .get('https://newsdata.io/api/1/news?apikey=pub_2456e6464bd3d2c7f5c2075a929c983333e1&q=dogecoin')
+            .then(data => {
+                // console.log(data.data)
+                let blogcards = data.data
+                commit('SET_BLOG_CARDS', blogcards)
+                commit('SET_LOADER_STATE', false)
+
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
         },
 
@@ -352,6 +375,10 @@ export default new vuex.Store({
             return state.storeproducts
         },
 
+        blogcards(state){
+            return state.blogcards
+        },
+
         latestproducts(state) {
             return state.latestproducts
         },
@@ -370,7 +397,7 @@ export default new vuex.Store({
         // cartItemInfo(state) {
         //     return state.cartItemInfo
         // },
-        baseUrl(state){
+        baseUrl(state) {
             return state.baseUrl
         },
         loader(state) {
