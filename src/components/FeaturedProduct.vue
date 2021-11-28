@@ -39,12 +39,12 @@
         </div>
       </div>
     </div>
-    <div v-else data-aos="fade-in">
+    <div v-else >
       <Carousel
         :breakpoints="breakpoints"
         :settings="settings"
-        :autoplay="2300"
-        :wrap-around="true"
+        :autoplay="2400"
+        :wrap-around="false"
       >
         <Slide
           v-for="featuredproduct in featuredproducts"
@@ -104,7 +104,7 @@ export default {
   },
   data() {
     return {
-      baseUrl : 'http://127.0.0.1:8000',
+      baseUrl : 'https://0768-169-239-3-230.ngrok.io',
       settings: {
         itemsToShow: 1,
         snapAlign: "center",

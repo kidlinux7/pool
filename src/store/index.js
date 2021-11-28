@@ -4,7 +4,7 @@ import axios from 'axios'
 // import Vue from 'vue';
 // Vue.use(vuex, axios)
 
-let baseUrl ='http://127.0.0.1:8000/'
+let baseUrl ='https://0768-169-239-3-230.ngrok.io/'
 let cartItems = window.localStorage.getItem('cartItems')
 let cartItemCount = window.localStorage.getItem('cartItemCount')
 
@@ -19,6 +19,7 @@ export default new vuex.Store({
         bestsellingproducts: [],
         weeklydiscountproducts: [],
         blogsnippest: [],
+        blogcard:[],
         storeproducts: [],
         sidestoreproductslatest: [],
         sidestoreproductsbestselling: [],
@@ -26,7 +27,6 @@ export default new vuex.Store({
 
         
         cartItems: cartItems ? JSON.parse(cartItems) : [],
-    
 
 
     },

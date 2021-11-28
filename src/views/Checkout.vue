@@ -116,7 +116,7 @@
           <hr />
           <div class="d-flex justify-content-between">
             <h5>Total</h5>
-            <h5>0.0</h5>
+            <h5>{{cartTotalPrice}}</h5>
           </div>
           <hr />
           <div class="d-flex justify-content-start">
@@ -160,7 +160,15 @@ export default {
   name: "Checkout",
   components:{
     Footer
-  }
+  },
+    computed: {
+    cartItems() {
+      return this.$store.state.cartItems;
+    },
+    cartTotalPrice() {
+      return this.$store.getters.cartTotalPrice;
+    },
+  },
 };
 </script>
 

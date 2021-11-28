@@ -36,10 +36,7 @@
             v-for="storeproduct in storeproducts"
             v-bind:key="storeproduct.id"
           >
-            <router-link
-              id="routeLink"
-              v-bind:to="'/productdetails/' + storeproduct.id"
-            >
+          <router-link id="routeLink" v-bind:to="'/productdetails/' + storeproduct.id">
               <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
               <div
                 class="card storeCard carousel__item"
@@ -87,7 +84,7 @@ export default {
   name: "StoreCard",
   data(){
     return{
-      baseUrl : 'http://127.0.0.1:8000',
+      baseUrl : 'https://0768-169-239-3-230.ngrok.io',
 
     }
   },

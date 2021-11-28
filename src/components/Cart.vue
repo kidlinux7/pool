@@ -99,7 +99,7 @@ export default {
   name: "Cart",
   data(){
     return {
-      baseUrl: "http://127.0.0.1:8000",
+      baseUrl: "https://0768-169-239-3-230.ngrok.io",
     }
   },
   computed: {

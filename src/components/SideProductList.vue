@@ -16,7 +16,7 @@
 
   </div>
 
-  <div v-else data-aos="fade-in">
+  <div v-else >
     <div id="sideBestSelling" class="mx-auto">
       <div
         class="card mb-3 position-relative"
@@ -101,7 +101,7 @@ export default {
   name: "SideProductList",
   data(){
     return{
-      baseUrl : 'http://127.0.0.1:8000',
+      baseUrl : 'https://0768-169-239-3-230.ngrok.io',
 
     }
   },

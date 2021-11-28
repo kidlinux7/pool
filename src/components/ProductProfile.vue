@@ -195,13 +195,22 @@
               <div class="colorSpace"></div>
               <div class="colorSpace"></div>
             </div> -->
-              <h6 class="card-subtitle mb-2 text-muted">- 1 +</h6>
+              <!-- <h6 class="card-subtitle mb-2 text-muted">- 1 +</h6> -->
 
               <div class="d-flex align-items-center">
-                <a href="#" class="card-link">checkout</a>
-                <a href="#" class="btn btn-primary mx-4 addToCartBtn"
-                  ><i class="fa-solid fa-cart-plus px-2"> </i>Add to cart</a
-                >
+                <!-- <a href="#" class="card-link">checkout</a> -->
+              <div
+                class="btn btn-primary addToCartBtn"
+                @click="
+                  addToCart([
+                    productprofile.name,
+                    productprofile.sell_price,
+                    productprofile.cover_image,
+                  ])
+                "
+              >
+                <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
+              </div>
               </div>
             </div>
           </div>
@@ -236,20 +245,23 @@ import "css-skeletons";
 export default {
   name: "ProductProfile",
   components:{
-    Footer
+    Footer,
+    LatestProduct,
+
   },
   data() {
     return {
-      baseUrl:"http://127.0.0.1:8000/",
+      baseUrl:"https://0768-169-239-3-230.ngrok.io",
       id: this.$route.params.id,
       productprofile: [],
       loader: false,
     };
   },
+
   mounted() {
     this.loader = true;
     axios
-      .get("http://127.0.0.1:8000/inventory/api/product/details?product=9")
+      .get("https://0768-169-239-3-230.ngrok.io/inventory/api/product/details?product=" + this.id)
       .then((data) => {
         // console.log(data.data);
         this.productprofile = data.data;
@@ -262,23 +274,22 @@ export default {
   methods:{
     updateImage(Image){
        this.productprofile.cover_image  = Image 
-    }
+    },
+        addToCart(data) {
+      // console.log(data)
+      this.$store.dispatch("addProductToCart", {
+        title: data[0],
+        price: data[1],
+        image: data[2],
+        quantity: 1,
+      });
+    },
   },
-  components: {
-    LatestProduct,
-  },
-
-  // mounted(){
-  //   this.$store.dispatch("loadIndividualProduct")
-  // },
 
   computed:{
       loader() {
       return this.$store.getters.loader;
     },
-    // baseUrl(){
-    //   return this.$store.getters.baseUrl;
-    // }
 
   }
 };
