@@ -59,6 +59,7 @@
         font-weight: 400;
         color: grey;
         margin-bottom: 20px;
+        font-size:0.3em;
       "
       class="px-5"
     >
@@ -93,56 +94,22 @@
 <div class="d-flex justify-content-center">
   <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
  <p style="text-align: left;" class="px-5">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Semper risus in
-      hendrerit gravida rutrum quisque non tellus orci. Morbi tristique senectus
-      et netus et malesuada. Vivamus at augue eget arcu dictum varius. A iaculis
-      at erat pellentesque adipiscing commodo elit at imperdiet. Duis tristique
-      sollicitudin nibh sit amet commodo nulla. Ut consequat semper viverra nam
-      libero justo. Quis risus sed vulputate odio ut enim blandit volutpat
-      maecenas. Sapien et ligula ullamcorper malesuada proin libero nunc. Amet
-      massa vitae tortor condimentum lacinia. Vivamus arcu felis bibendum ut
-      tristique et egestas. Purus in mollis nunc sed. Tortor posuere ac ut
-      consequat semper viverra nam. Viverra orci sagittis eu volutpat odio
-      facilisis mauris. Suscipit tellus mauris a diam maecenas sed enim ut sem.
-      Enim tortor at auctor urna nunc id cursus metus. Ut diam quam nulla
-      porttitor massa. Cursus euismod quis viverra nibh cras pulvinar mattis.
-      Mauris pharetra et ultrices neque ornare. Enim eu turpis egestas pretium
-      aenean pharetra magna ac. Condimentum vitae sapien pellentesque habitant
-      morbi tristique. Et malesuada fames ac turpis. Odio eu feugiat pretium
-      nibh ipsum consequat nisl vel pretium. Quam nulla porttitor massa id neque
-      aliquam vestibulum morbi blandit. Sed faucibus turpis in eu mi. Pretium
-      fusce id velit ut tortor pretium viverra.
-      <br />
-      Massa vitae tortor condimentum lacinia quis. Nibh mauris cursus mattis
-      molestie. Nascetur ridiculus mus mauris vitae ultricies leo integer
-      malesuada nunc. At quis risus sed vulputate. Duis ultricies lacus sed
-      turpis. Morbi tristique senectus et netus et malesuada fames. Dolor sed
-      viverra ipsum nunc aliquet bibendum enim. Duis tristique sollicitudin nibh
-      sit. Proin nibh nisl condimentum id venenatis a condimentum vitae sapien.
-      Tincidunt dui ut ornare lectus. Commodo quis imperdiet massa tincidunt
-      nunc pulvinar sapien et. Vel quam elementum pulvinar etiam non quam lacus
-      suspendisse. Faucibus vitae aliquet nec ullamcorper. Blandit turpis cursus
-      in hac. Vitae congue mauris rhoncus aenean vel elit scelerisque mauris.
-      Viverra justo nec ultrices dui sapien eget mi proin. Blandit massa enim
-      nec dui nunc mattis enim ut. Vel pretium lectus quam id leo in vitae
-      turpis massa. Turpis egestas pretium aenean pharetra magna ac placerat. Et
-      netus et malesuada fames ac turpis egestas maecenas. Tempus quam
-      pellentesque nec nam aliquam sem et. Sit amet nisl suscipit adipiscing.
-      Sit amet mauris commodo quis imperdiet massa tincidunt nunc. At tempor
-      commodo ullamcorper a lacus vestibulum sed. Et netus et malesuada fames.
-      Ut tortor pretium viverra suspendisse potenti nullam ac tortor.
-      Condimentum mattis pellentesque id nibh tortor. Id neque aliquam
-      vestibulum morbi blandit cursus risus. Proin libero nunc consequat
-      interdum varius sit amet mattis vulputate.
+   
+      <div v-if="!readMoreActivated">
+        {{description.slice(0,300)}}
+
+      <button @click="View()"> Read more</button>
+
+      </div>
+            <div v-if="readMoreActivated">
+        {{description}}
+      <button @click="View()"> Show less</button> 
+
+      </div>
     </p>
   </div>
      
 </div>
-
-
-
-
 
     </div>
 
@@ -168,9 +135,22 @@ export default {
     return {
       id: this.$route.params.id,
       blogprofile: [],
+      readMoreActivated: false,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Morbi tristique senectus et netus et malesuada. Vivamus at augue eget arcu dictum varius. A iaculis at erat pellentesque adipiscing commodo elit at imperdiet. Duis tristique sollicitudin nibh sit amet commodo nulla. Ut consequat semper viverra nam libero justo. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Sapien et ligula ullamcorper malesuada proin libero nunc. Amet  massa vitae tortor condimentum lacinia. Vivamus arcu felis bibendum ut tristique et egestas. Purus in mollis nunc sed. Tortor posuere ac ut consequat semper viverra nam. Viverra orci sagittis eu volutpat odio Vivamus at augue eget arcu dictum varius. A iaculis at erat pellentesque adipiscing commodo elit at imperdiet. Duis tristique sollicitudin nibh sit amet commodo nulla. Ut consequat semper viverra nam libero justo. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Sapien et ligula ullamcorper malesuada proin libero nunc. Amet massa vitae tortor condimentum lacinia. Vivamus arcu felis bibendum ut tristique et egestas. Purus in mollis nunc sed. Tortor posuere ac ut consequat semper viverra nam. Viverra orci sagittis eu volutpat odio",
       loader: false,
       imagelink: "http://source.unsplash.com/random/200×200",
     };
+  },
+  methods: {
+    View() {
+      if (this.readMoreActivated == false) {
+        this.readMoreActivated = true;
+      } else if (this.readMoreActivated == true) {
+        this.readMoreActivated = false;
+      }
+      console.log(this.readMoreActivated);
+    },
   },
   mounted() {
     this.loader = true;
@@ -190,7 +170,7 @@ export default {
 
 <style scoped>
 .topSpace {
-  margin-top: 10vh;
+  margin-top: 7vh;
 }
 .img {
   margin-top: 5vh;
