@@ -61,7 +61,6 @@ export default new vuex.Store({
             state.storeproducts = storeproducts
         },
 
-
         //Fetching Blog Cards
         SET_BLOG_CARDS(state, blogcards) {
             state.blogcards = blogcards
@@ -183,18 +182,16 @@ export default new vuex.Store({
         loadBlogCards({commit}){
             commit('SET_LOADER_STATE',true)
             axios
-            .get('https://newsdata.io/api/1/news?apikey=pub_2456e6464bd3d2c7f5c2075a929c983333e1&q=dogecoin')
+            .get('https://jsonplaceholder.typicode.com/posts')
             .then(data => {
                 // console.log(data.data)
                 let blogcards = data.data
                 commit('SET_BLOG_CARDS', blogcards)
                 commit('SET_LOADER_STATE', false)
-
             })
             .catch(error => {
                 console.log(error)
             })
-
         },
 
         loadLatestProducts({ commit }) {
@@ -279,7 +276,6 @@ export default new vuex.Store({
                 .catch(error => {
                     console.log(error)
                 })
-
         },
 
         loadStoreProducts({ commit }) {

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row align-items-center " id="topSection" >
+    <div class="row align-items-center" id="topSection">
       <div
         class="
           col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12
@@ -11,7 +11,7 @@
           src="../assets/poster.png"
           class="img-responsive"
           alt="product Image"
-          style="width:100%;height:auto;border-radius:10px;"
+          style="width: 100%; height: auto; border-radius: 10px"
         />
       </div>
     </div>
@@ -23,7 +23,6 @@
     <BestSellingProduct></BestSellingProduct>
     <NewsLetter></NewsLetter>
     <BlogCardSnippet></BlogCardSnippet>
-    
   </div>
   <Footer></Footer>
 </template>

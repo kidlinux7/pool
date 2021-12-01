@@ -4,6 +4,7 @@ import Store from "../views/Store.vue";
 import Poolcare from "../views/Poolcare.vue";
 import Blog from "../views/Blog.vue";
 import ProductDetails from "../views/ProductDetails.vue";
+import BlogProfile from "../views/BlogProfile.vue";
 import Checkout from "../views/Checkout.vue";
 
 const routes = [
@@ -36,6 +37,11 @@ const routes = [
     path: "/blog",
     name: "Blog",
     component: Blog,
+  },
+  {
+    path:"/blogprofile/:id",
+    name:" BlogProfile",
+    component: BlogProfile,
   },
   {
     path: "/about",

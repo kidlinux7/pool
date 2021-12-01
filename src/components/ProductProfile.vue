@@ -244,14 +244,13 @@ import axios from "axios";
 import "css-skeletons";
 export default {
   name: "ProductProfile",
-  components:{
+  components: {
     Footer,
     LatestProduct,
-
   },
   data() {
     return {
-      baseUrl:"https://0768-169-239-3-230.ngrok.io",
+      baseUrl: "https://0768-169-239-3-230.ngrok.io",
       id: this.$route.params.id,
       productprofile: [],
       loader: false,
@@ -261,7 +260,10 @@ export default {
   mounted() {
     this.loader = true;
     axios
-      .get("https://0768-169-239-3-230.ngrok.io/inventory/api/product/details?product=" + this.id)
+      .get(
+        "https://0768-169-239-3-230.ngrok.io/inventory/api/product/details?product=" +
+          this.id
+      )
       .then((data) => {
         // console.log(data.data);
         this.productprofile = data.data;
@@ -271,11 +273,11 @@ export default {
         console.log(error);
       });
   },
-  methods:{
-    updateImage(Image){
-       this.productprofile.cover_image  = Image 
+  methods: {
+    updateImage(Image) {
+      this.productprofile.cover_image = Image;
     },
-        addToCart(data) {
+    addToCart(data) {
       // console.log(data)
       this.$store.dispatch("addProductToCart", {
         title: data[0],
@@ -286,12 +288,11 @@ export default {
     },
   },
 
-  computed:{
-      loader() {
+  computed: {
+    loader() {
       return this.$store.getters.loader;
     },
-
-  }
+  },
 };
 </script>
 <style scoped>

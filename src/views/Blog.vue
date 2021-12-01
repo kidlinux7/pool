@@ -9,12 +9,10 @@
         <StoreInsightCard></StoreInsightCard>
       </div>
     </div>
-
+    <h3 class="midSectionHeading">Latest News</h3>
     <div v-if="loader">
       <div class="container-fluid">
         <div class="row mx-auto">
-          <h3 class="midSectionHeading">Latest News</h3>
-
           <div
             class="
               col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12
@@ -26,88 +24,64 @@
           >
             <div
               class="skeleton skeleton-rect mx-auto"
-              style="--rect-h: 270px; --lines: 2; --t: 0.6s"
+              style="--rect-h: 270px; --lines: 3; --t: 0.6s"
             ></div>
           </div>
         </div>
       </div>
     </div>
 
-
-<div v-else data-aos="fade-in">
-    <div class="row mt-3">
-      <div
-        class="
-          col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12
-          mb-4
-          mt-5
-        "
-        v-for="blogcard in blogcards"
-        v-bind:key="blogcard.id"
-      >
-        <div class="card mb-3">
-          <img
-            :src="blogarticle.image_url"
-            class="card-img-top"
-            style="border-radius: 12px"
-            alt="..."
-          />
-          <div class="card-body blogCardTitle">
-            <h5 class="card-title text-left blogSectionTitle">
-              {{ blogarticle.title }}
-            </h5>
-            <p class="card-text blogSectionDescr">
-              {{ blogarticle.description }}
-            </p>
-            <p class="card-text">
-              <small class="text-muted blogSectionTime"
-                >Last updated 3 mins ago</small
-              >
-            </p>
-          </div>
+    <div v-else>
+      <div class="row mt-3">
+        <div
+          class="
+            col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12
+            mb-4
+            mt-5
+          "
+          v-for="blogcard in blogcards"
+          v-bind:key="blogcard.id"
+        >
+          <router-link id="routeLink" v-bind:to="'/blogprofile/' + blogcard.id">
+            <div class="card mb-3">
+              <img
+                src="http://source.unsplash.com/random/200×200"
+                class="card-img-top"
+                style="border-radius: 12px"
+                alt="..."
+              />
+              <div class="card-body blogCardTitle">
+                <h5 class="card-title text-left blogSectionTitle">
+                  {{ blogcard.title }}
+                </h5>
+                <p class="card-text blogSectionDescr">
+                  {{ blogcard.body }}
+                </p>
+                <p class="card-text">
+                  <small class="text-muted blogSectionTime"
+                    >Last updated 3 mins ago</small
+                  >
+                </p>
+              </div>
+            </div>
+          </router-link>
         </div>
       </div>
     </div>
-    </div>
   </div>
+  <Footer></Footer>
+
 </template>
 <script>
 import StoreInsightCard from "@/components/StoreInsightCard.vue";
+import Footer from "@/components/Footer.vue";
 export default {
   name: "Blog",
   components: {
     StoreInsightCard,
+    Footer,
+
   },
-  //     data() {
-  //     return {
-  //       blogarticles: [
-  //         {
-  //           id: 1,
-  //           title: "Course Section",
-  //           description:
-  //             "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-  //           image: "http://source.unsplash.com/random/200×200",
-  //           date: "May 4, 2021",
-  //         },
-  //         {
-  //           id: 2,
-  //           title: "Cleaning Section",
-  //           description:
-  //             "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-  //           image: "http://source.unsplash.com/random/200×200",
-  //           date: "May 5, 2021",
-  //         },
-  //         {
-  //           id: 3,
-  //           title: "Salt Cleaning",
-  //           description:
-  //             "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-  //           image: "http://source.unsplash.com/random/200×200",
-  //           date: "May 7, 2021",
-  //         },
-  //       ],
-  //     };
-  //   },
 
   mounted() {
     this.$store.dispatch("loadBlogCards");
@@ -116,7 +90,7 @@ export default {
     loader() {
       return this.$store.getters.loader;
     },
-    storeproducts() {
+    blogcards() {
       return this.$store.getters.blogcards;
     },
   },
@@ -149,3 +123,4 @@ export default {
   }
 }
 </style>
+
