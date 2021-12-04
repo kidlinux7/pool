@@ -59,7 +59,8 @@
         font-weight: 400;
         color: grey;
         margin-bottom: 20px;
-        font-size:0.3em;
+        font-size:1em;
+        margin-top:5vh;
       "
       class="px-5"
     >
@@ -96,14 +97,14 @@
  <p style="text-align: left;" class="px-5">
    
       <div v-if="!readMoreActivated">
-        {{description.slice(0,300)}}
+        {{description.slice(0,700)}}
 
-      <button @click="View()"> Read more</button>
+      <span id="link" @click="View()"> Read more</span>
 
       </div>
             <div v-if="readMoreActivated">
         {{description}}
-      <button @click="View()"> Show less</button> 
+      <span id="link" @click="View()"> Show less</span> 
 
       </div>
     </p>
@@ -169,6 +170,11 @@ export default {
 </script>
 
 <style scoped>
+#link{
+  cursor: pointer;
+  color: blue;
+  font-weight:bold;
+}
 .topSpace {
   margin-top: 7vh;
 }

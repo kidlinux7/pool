@@ -1,10 +1,7 @@
 import vuex from 'vuex'
 import axios from 'axios'
 
-// import Vue from 'vue';
-// Vue.use(vuex, axios)
-
-let baseUrl = 'https://0768-169-239-3-230.ngrok.io/'
+let baseUrl = 'http://127.0.0.1:8000/'
 let cartItems = window.localStorage.getItem('cartItems')
 let cartItemCount = window.localStorage.getItem('cartItemCount')
 
@@ -14,6 +11,11 @@ export default new vuex.Store({
         loader: false,
         sideLoader: false,
 
+        //Fetched Product Category ID
+        id: 1,
+
+        productcategories:[],
+        productcategory:[],
         latestproducts: [],
         featuredproducts: [],
         bestsellingproducts: [],
@@ -26,10 +28,13 @@ export default new vuex.Store({
         sidestoreproductsdiscount: [],
 
         cartItems: cartItems ? JSON.parse(cartItems) : [],
-
-
     },
     mutations: {
+
+        // Fetching Product Categories
+        SET_PRODUCT_CATEGORIES(state,productcategories){
+            state.productcategories = productcategories
+        },
 
         // Fetching Latest Products
         SET_LATEST_PRODUCTS(state, latestproducts) {
@@ -86,6 +91,12 @@ export default new vuex.Store({
         //Side Loading Indicator
         SET_SIDE_LOADER_STATE(state, newsideLoader) {
             state.sideLoader = newsideLoader
+        },
+
+
+        //Fetch Specific Product Category
+        SET_PRODUCT_CATEGORY(state,id){
+            state.id = id
         },
 
         //Adding Products To Cart
@@ -178,6 +189,39 @@ export default new vuex.Store({
             this.commit('saveCart')
 
         },
+
+        
+        loadProductCategories({commit}){
+            commit('SET_LOADER_STATE',true)
+            axios
+            .get(baseUrl + 'inventory/api/list/product/categories')
+            .then(data => {
+                // console.log(data.data)
+                let productcategories = data.data
+                commit('SET_PRODUCT_CATEGORIES', productcategories)
+                commit('SET_LOADER_STATE', false)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        },
+
+        
+        fetchProductCategory({commit},{id}){
+            commit('SET_LOADER_STATE',true)
+            axios
+            .get(baseUrl + 'inventory/api/list/product/categories/' + id)
+            .then(data => {
+                // console.log(data.data)
+                let storeproducts = data.data
+                commit('SET_PRODUCT_CATEGORY', storeproducts)
+                commit('SET_LOADER_STATE', false)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        },
+
 
         loadBlogCards({commit}){
             commit('SET_LOADER_STATE',true)
@@ -365,6 +409,10 @@ export default new vuex.Store({
         },
         sidestoreproductsbestselling(state) {
             return state.sidestoreproductsbestselling
+        },
+
+        productcategories(state){
+            return state.productcategories
         },
 
         storeproducts(state) {

@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div v-else >
+    <div v-else>
       <Carousel
         :breakpoints="breakpoints"
         :settings="settings"
@@ -48,21 +48,34 @@
       >
         <Slide
           v-for="featuredproduct in featuredproducts"
-          v-bind:key="featuredproduct.id" 
+          v-bind:key="featuredproduct.id"
         >
-          <router-link id="routeLink" v-bind:to="'/productdetails/' + featuredproduct.id">
+          <router-link
+            id="routeLink"
+            v-bind:to="'/productdetails/' + featuredproduct.id"
+          >
             <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
             <div
               class="card mx-auto featuredProduct carousel__item"
               style="width: 18rem"
             >
-              <img :src="this.baseUrl + featuredproduct.cover_image" class="card-img-top" alt="..." />
+              <img
+                :src="this.baseUrl + featuredproduct.cover_image"
+                class="card-img-top"
+                alt="..."
+              />
               <div class="card-body">
                 <h5 class="featuredProduct_card_category">
                   {{ featuredproduct.category }}
                 </h5>
-                <h5 class="card-title ">
-                  <p>{{featuredproduct.name}}</p>
+                <h5 class="card-title">
+                  <div v-if="featuredproduct.name.length < 15">
+                    <p>{{ featuredproduct.name }}</p>
+                  </div>
+                  <div v-else>
+                    <p>{{ featuredproduct.name.slice(0, 15) }}..</p>
+                  </div>
+
                   <!-- <a href=""
                     ><router-link to="/ProductDetails">{{
                       
@@ -75,7 +88,7 @@
                 </div> -->
                 <div>
                   <p class="featuredProduct_card_info">
-                  Tsh {{ featuredproduct.sell_price }}
+                    Tsh {{ featuredproduct.sell_price }}
                   </p>
                 </div>
                 <!-- <div class="btn btn-primary addToCartBtn">
@@ -104,7 +117,7 @@ export default {
   },
   data() {
     return {
-      baseUrl : 'https://0768-169-239-3-230.ngrok.io',
+      baseUrl: "http://127.0.0.1:8000",
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -146,18 +159,18 @@ export default {
   border-color: transparent;
 }
 
-.card-title{
-    color: rgb(68, 68, 68);
+.card-title {
+  color: rgb(68, 68, 68);
   text-decoration: none !important;
   font-weight: bold;
 }
 
-.btn{
+.btn {
   font-family: "Poppins", sans;
 }
 
 /* Featured Product Card */
-.featuredProduct_card_category{
+.featuredProduct_card_category {
   color: rgb(173, 173, 173);
   text-align: left;
   margin-left: 20px;
@@ -167,7 +180,6 @@ export default {
 .featuredProduct_card_ratingStars {
   float: left;
   margin-left: 20px;
-
 }
 .featuredProduct_card_image {
   height: 190px;
@@ -177,7 +189,6 @@ export default {
   text-align: left;
   font-family: "Poppins", sans;
   margin-left: 20px;
-
 }
 
 .blueNameTag {

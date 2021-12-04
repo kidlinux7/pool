@@ -48,7 +48,13 @@
                     {{ storeproduct.category }}
                   </h5>
                   <h5 class="storCard_title card-title">
-                    <p>{{ storeproduct.name }}</p>
+                    <div v-if="storeproduct.name.length < 15">
+                        <p>{{ storeproduct.name}}</p>
+                    </div>
+                    <div v-else>
+                    <p>{{ storeproduct.name.slice(0,15) }}..</p>
+
+                    </div>
                     <!-- <a href=""
                     ><router-link to="/ProductDetails">{{
                       
@@ -84,7 +90,7 @@ export default {
   name: "StoreCard",
   data(){
     return{
-      baseUrl : 'https://0768-169-239-3-230.ngrok.io',
+      baseUrl : 'http://127.0.0.1:8000',
 
     }
   },

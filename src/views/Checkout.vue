@@ -104,6 +104,19 @@
             <h5>Products</h5>
             <h5>Total</h5>
           </div>
+
+          <!-- Cart Items List -->
+          <div class="d-flex flex-column">
+          <div v-for="item in cartItems" v-bind:key="item.title.id">
+            <div class="d-flex justify-content-between" style="color:grey;">
+            <p>{{ item.title }}</p>
+            <p>{{ item.price }}</p>
+            </div>
+
+          </div>
+          </div>
+
+
           <hr />
           <div class="d-flex justify-content-between">
             <h6>Delivery Charges</h6>
@@ -116,7 +129,7 @@
           <hr />
           <div class="d-flex justify-content-between">
             <h5>Total</h5>
-            <h5>{{cartTotalPrice}}</h5>
+            <h5>{{ cartTotalPrice }}</h5>
           </div>
           <hr />
           <div class="d-flex justify-content-start">
@@ -138,13 +151,13 @@
           </div>
           <div class="d-grid gap-2">
             <!-- <router-link to="/checkout"> -->
-              <button
-                class="btn btn-primary"
-                data-bs-dismiss="offcanvas"
-                type="button"
-              >
-                Confirm Order
-              </button>
+            <button
+              class="btn btn-primary"
+              data-bs-dismiss="offcanvas"
+              type="button"
+            >
+              Confirm Order
+            </button>
             <!-- </router-link> -->
           </div>
         </div>
@@ -158,10 +171,10 @@
 import Footer from "@/components/Footer.vue";
 export default {
   name: "Checkout",
-  components:{
-    Footer
+  components: {
+    Footer,
   },
-    computed: {
+  computed: {
     cartItems() {
       return this.$store.state.cartItems;
     },
@@ -173,8 +186,8 @@ export default {
 </script>
 
 <style scoped>
-hr{
-   border-top: 1px dashed rgb(97, 97, 97);
+hr {
+  border-top: 1px dashed rgb(97, 97, 97);
 }
 h5 {
   font-weight: bold;

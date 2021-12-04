@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div v-else >
+    <div v-else>
       <Carousel
         :breakpoints="breakpoints"
         :settings="settings"
@@ -48,21 +48,34 @@
       >
         <Slide
           v-for="weeklydiscountproduct in weeklydiscountproducts"
-          v-bind:key="weeklydiscountproduct.id" 
+          v-bind:key="weeklydiscountproduct.id"
         >
-          <router-link id="routeLink" v-bind:to="'/productdetails/' + weeklydiscountproduct.id">
+          <router-link
+            id="routeLink"
+            v-bind:to="'/productdetails/' + weeklydiscountproduct.id"
+          >
             <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
             <div
               class="card mx-auto weeklyDiscountProduct carousel__item"
               style="width: 18rem"
             >
-              <img :src="this.baseUrl + weeklydiscountproduct.cover_image" class="card-img-top" alt="..." />
+              <img
+                :src="this.baseUrl + weeklydiscountproduct.cover_image"
+                class="card-img-top"
+                alt="..."
+              />
               <div class="card-body">
                 <h5 class="weeklyDiscountProduct_card_category">
                   {{ weeklydiscountproduct.category }}
                 </h5>
-                <h5 class="card-title ">
-                  <p>{{weeklydiscountproduct.name}}</p>
+                <h5 class="card-title">
+                  <div v-if="weeklydiscountproduct.name.length < 15">
+                    <p>{{ weeklydiscountproduct.name }}</p>
+                  </div>
+                  <div v-else>
+                    <p>{{ weeklydiscountproduct.name.slice(0, 15) }}..</p>
+                  </div>
+
                   <!-- <a href=""
                     ><router-link to="/ProductDetails">{{
                       
@@ -104,7 +117,7 @@ export default {
   },
   data() {
     return {
-      baseUrl : 'https://0768-169-239-3-230.ngrok.io',
+      baseUrl: "http://127.0.0.1:8000",
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -139,7 +152,7 @@ export default {
 </script>
 
 <style scoped>
-#routeLink{
+#routeLink {
   text-decoration: none;
 }
 .weeklyDiscountProduct:hover {

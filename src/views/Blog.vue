@@ -6,12 +6,11 @@
           col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12
         "
       >
-        <StoreInsightCard></StoreInsightCard>
+        <!-- <StoreInsightCard></StoreInsightCard> -->
       </div>
     </div>
-    <h3 class="midSectionHeading">Latest News</h3>
     <div v-if="loader">
-      <div class="container-fluid">
+      <div class="container-fluid " style="margin-top:10vh;">
         <div class="row mx-auto">
           <div
             class="
@@ -32,6 +31,33 @@
     </div>
 
     <div v-else>
+      <div class="d-flex justify-content-center align-items-center" style="margin-top:10vh;">
+        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+          <div class="img">
+            <img
+              src="../assets/Heat.png"
+              class="img-responsive"
+              alt="product Image"
+              style="
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+                margin-bottom: 50px;
+              "
+            />
+            <!-- <img :src="imagelink" height="200px" width="100%" /> -->
+          </div>
+        </div>
+        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+          <h2 style="text-align: left; font-weight: 700" class="px-5">
+           Crative Desing user guide,the experince and results..
+          </h2>
+          <p class="px-5" style="font-weight:2em;text-align:left;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste nobis inventore expedita illo? Eos molestias quidem eligendi repellat. Tempore esse est cum unde cumque debitis atque perferendis veniam ad aspernatur.</p>
+          <button class="btn btn-primary" style="float:left;margin-left:50px;">Read Article</button>
+        </div>
+      </div>
+    <h3 class="midSectionHeading">Latest News</h3>
+
       <div class="row mt-3">
         <div
           class="
@@ -70,7 +96,6 @@
     </div>
   </div>
   <Footer></Footer>
-
 </template>
 <script>
 import StoreInsightCard from "@/components/StoreInsightCard.vue";
@@ -80,7 +105,6 @@ export default {
   components: {
     StoreInsightCard,
     Footer,
-
   },
 
   mounted() {

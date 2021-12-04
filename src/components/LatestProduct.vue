@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div v-else >
+    <div v-else>
       <Carousel
         :breakpoints="breakpoints"
         :settings="settings"
@@ -56,13 +56,22 @@
             class="card mx-auto latestProduct carousel__item"
             style="width: 18rem"
           >
-            <img :src="this.baseUrl + latestproduct.cover_image" class="card-img-top" alt="..." />
+            <img
+              :src="this.baseUrl + latestproduct.cover_image"
+              class="card-img-top"
+              alt="..."
+            />
             <div class="card-body">
               <h5 class="latestProduct_card_category">
                 {{ latestproduct.category }}
               </h5>
               <h5 class="card-title">
-                <p>{{ latestproduct.name }}</p>
+                <div v-if="latestproduct.name.length < 15">
+                  <p>{{ latestproduct.name }}</p>
+                </div>
+                <div v-else>
+                  <p>{{ latestproduct.name.slice(0, 15) }}..</p>
+                </div>
                 <!-- <a href=""
                     ><router-link to="/ProductDetails">{{
                       
@@ -112,7 +121,7 @@ export default {
   },
   data() {
     return {
-      baseUrl: "https://0768-169-239-3-230.ngrok.io",
+      baseUrl: "http://127.0.0.1:8000",
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -155,7 +164,6 @@ export default {
     latestproducts() {
       return this.$store.getters.latestproducts;
     },
-
   },
 };
 </script>

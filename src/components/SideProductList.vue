@@ -101,7 +101,7 @@ export default {
   name: "SideProductList",
   data(){
     return{
-      baseUrl : 'https://0768-169-239-3-230.ngrok.io',
+      baseUrl : 'http://127.0.0.1:8000',
 
     }
   },

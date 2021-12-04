@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div v-else >
+    <div v-else>
       <Carousel
         :breakpoints="breakpoints"
         :settings="settings"
@@ -48,21 +48,34 @@
       >
         <Slide
           v-for="bestsellingproduct in bestsellingproducts"
-          v-bind:key="bestsellingproduct.id" 
+          v-bind:key="bestsellingproduct.id"
         >
-          <router-link id="routeLink" v-bind:to="'/productdetails/' + bestsellingproduct.id">
+          <router-link
+            id="routeLink"
+            v-bind:to="'/productdetails/' + bestsellingproduct.id"
+          >
             <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
             <div
               class="card mx-auto bestSellingProduct carousel__item"
               style="width: 18rem"
             >
-              <img :src="this.baseUrl + bestsellingproduct.cover_image" class="card-img-top" alt="..." />
+              <img
+                :src="this.baseUrl + bestsellingproduct.cover_image"
+                class="card-img-top"
+                alt="..."
+              />
               <div class="card-body">
                 <h5 class="bestSellingProduct_card_category">
                   {{ bestsellingproduct.category }}
                 </h5>
-                <h5 class="card-title ">
-                  <p>{{bestsellingproduct.name}}</p>
+                <h5 class="card-title">
+                  <div v-if="bestsellingproduct.name.length < 15">
+                    <p>{{ bestsellingproduct.name }}</p>
+                  </div>
+                  <div v-else>
+                    <p>{{ bestsellingproduct.name.slice(0, 15) }}..</p>
+                  </div>
+
                   <!-- <a href=""
                     ><router-link to="/ProductDetails">{{
                       
@@ -104,7 +117,7 @@ export default {
   },
   data() {
     return {
-      baseUrl : 'https://0768-169-239-3-230.ngrok.io',
+      baseUrl: "http://127.0.0.1:8000",
       settings: {
         itemsToShow: 1,
         snapAlign: "center",

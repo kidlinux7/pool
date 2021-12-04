@@ -1,40 +1,50 @@
 <template>
-  <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-3" >
+  <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-3">
     <div class="d-flex flex-column">
       <div class="d-flex flex-column categoryGroup">
         <h4 class="storeCategory">Categories</h4>
-        <h5 style="cursor: pointer;" class="storeCategoryList" v-on:click="$store.dispatch('loadStoreProducts')">Apparati</h5>
-        <h5 style="cursor: pointer;" class="storeCategoryList" v-on:click="$store.dispatch('loadStoreProductsWaterPump')">WaterPumps</h5>
-        <h5 style="cursor: pointer;" class="storeCategoryList">Uniforms</h5>
-        <h5 style="cursor: pointer;" class="storeCategoryList">Chemicals</h5>
-      </div>
-
-      <div class="d-flex flex-column priceRange">
-        <h4 class="storeCategory">PriceRange</h4>
-        <!-- <input type="range" class="form-range" id="customRange1" />
-        <label for="customRange1" id="priceRanger" class="form-label"
-          >$10 - $890</label
-        > -->
-      </div>
-
-      <!-- <div class="d-flex flex-column colorPicker">
-        <h4 class="storeCategory">Colors</h4>
-        <div class="d-flex align-items-center">
-          <div class="colorCircle"></div>
-
-          <p class="colorCircleName">Red</p>
+        <div
+          v-for="productcategory in productcategories"
+          v-bind:key="productcategory.id"
+        >
+          <h5
+            style="cursor: pointer"
+            class="storeCategoryList"
+            v-on:click="getProductCategoryId([productcategory.id])"
+          >
+            {{ productcategory.name }}
+          </h5>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
   name: "FilterSection",
+
+  methods: {
+    getProductCategoryId(data) {
+      this.$store.dispatch("fetchProductCategory", {
+        id: data[0],
+      });
+    },
+  },
+
+  mounted() {
+    this.$store.dispatch("loadProductCategories");
+  },
+  computed: {
+    loader() {
+      return this.$store.getters.loader;
+    },
+    productcategories() {
+      return this.$store.getters.productcategories;
+    },
+  },
 };
 </script>
 <style scoped>
-
 .colorCircleName {
   font-size: 1.3em;
   margin-bottom: 0px;
