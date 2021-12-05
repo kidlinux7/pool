@@ -18,11 +18,11 @@
             style="border-radius: 12px"
             alt="..."
           />
-          <div class="card-body blogCardTitle">
-            <h5 class="card-title text-left blogSectionTitle">
+          <div class="card-body blogCardTitle" style="text-align:left;">
+            <h5 class="card-title  blogSectionTitle">
               {{ blogarticle.title }}
             </h5>
-            <p class="card-text blogSectionDescr">
+            <p class="card-text blogSectionDescr" style="text-decoration:none;">
               {{ blogarticle.description }}
             </p>
             <p class="card-text">

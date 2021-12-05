@@ -1,6 +1,38 @@
 <template>
   <div v-if="loader" class="mt-5">
-    <div class="container-fluid">
+    <div class="container" >
+          <div class="d-flex justify-content-center">
+
+      <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-3" style="margin-top:5vh;">
+            <p style="text-align: center">
+                <div 
+                  class="skeleton skeleton-line" 
+                  style="
+                    --lines: 1;
+                    --c-w: 100%;
+                  "
+                ></div>
+            </p>
+          </div>
+</div>
+
+
+          <div class="d-flex justify-content-center">
+
+      <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12" style="margin-top:1vh;">
+            <p style="text-align: center">
+                <div 
+                  class="skeleton skeleton-line" 
+                  style="
+                    --lines: 3;
+                    --c-w: 100%;
+                  "
+                ></div>
+            </p>
+          </div>
+</div>
+
+
       <div class="row">
         <div
           class="
@@ -9,18 +41,42 @@
         >
           <div
             class="skeleton skeleton-rect mx-auto"
-            style="--rect-h: 40vh; --c-w: 100%; --lines: 0; --t: 0.6s"
+            style="--rect-h: 20vh; --c-w: 80%; --lines: 0; --t: 0.6s"
           ></div>
         </div>
       </div>
 
-<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-3">
-          <div class="d-flex flex-row-reverse">
-            <p style="text-align: left">
+
+
+      <div class="row">
+          <div class="d-flex justify-content-center">
+
+        <div
+          class="
+            col-xxl-8 col-xl-8 col-lg-6 col-md-12 col-sm-12 col-xs-12 col-12
+          "
+        >
+            <p style="text-align: center">
                 <div 
                   class="skeleton skeleton-line" 
                   style="
-                    --lines: 2;
+                    --lines: 6;
+                    --c-w: 100%;
+                  "
+                ></div>
+            </p>
+          </div>
+        </div>
+      </div>
+
+          <div class="d-flex justify-content-center">
+
+      <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-3" style="margin-top:5vh;">
+            <p style="text-align: center">
+                <div 
+                  class="skeleton skeleton-line" 
+                  style="
+                    --lines: 1;
                     --c-w: 100%;
                   "
                 ></div>
@@ -28,25 +84,23 @@
           </div>
 </div>
 
-      <div class="row">
-        <div
-          class="
-            col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12
-          "
-        >
-          <div class="d-flex flex-row-reverse">
-            <p style="text-align: left">
-                <div 
-                  class="skeleton skeleton-line" 
-                  style="
-                    --lines: 10;
-                    --c-w: 100%;
-                  "
-                ></div>
-            </p>
+        <div class="row mx-auto">
+          <div
+            class="
+              col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12
+              mx-auto
+            "
+            id="shimmer"
+            v-for="index in 3"
+            :key="index"
+          >
+            <div
+              class="skeleton skeleton-rect mx-auto"
+              style="--rect-h: 270px; --lines: 2; --t: 0.6s"
+            ></div>
           </div>
         </div>
-      </div>
+
     </div>
   </div>
   <div v-else class="topSpace">
@@ -170,10 +224,10 @@ export default {
 </script>
 
 <style scoped>
-#link{
+#link {
   cursor: pointer;
   color: blue;
-  font-weight:bold;
+  font-weight: bold;
 }
 .topSpace {
   margin-top: 7vh;

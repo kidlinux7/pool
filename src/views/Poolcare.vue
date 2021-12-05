@@ -22,6 +22,7 @@
           src="../assets/cleaning.jpg"
           class="img-fluid poolcareImage p-5"
           alt="product Image"
+          style="border-radius: 60px"
         />
       </div>
       <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -29,7 +30,10 @@
           <h5 class="d-flex justify-content-start" style="font-weight: bold">
             Pool cleaning & Treatment
           </h5>
-          <p class="d-flex justify-content-start text-left">
+          <p
+            class="d-flex justify-content-start text-left"
+            style="text-align: left"
+          >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id nisi
             purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
             magna magna, congue quis mattis nec, auctor vel ipsum. Etiam ac
@@ -52,6 +56,7 @@
           src="../assets/construction.jpeg"
           class="img-fluid poolcareImage p-5"
           alt="product Image"
+          style="border-radius: 60px"
         />
       </div>
       <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -59,7 +64,7 @@
           <h5 class="d-flex justify-content-start" style="font-weight: bold">
             Pool construction & Design
           </h5>
-          <p class="d-flex justify-content-start">
+          <p class="d-flex justify-content-start" style="text-align: left">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id nisi
             purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
             magna magna, congue quis mattis nec, auctor vel ipsum. Etiam ac
@@ -101,7 +106,12 @@
         >
           <h5 class="d-flex flex-row mb-3">Book Here</h5>
           <div class="column g-3">
-            <form class="form-floating" @submit="serviceRequest" method="POST">
+            <form
+              ref="servicerequest"
+              class="form-floating"
+              @submit="serviceRequest"
+              method="POST"
+            >
               <div class="form-floating mb-3">
                 <input
                   v-model="customer.name"
@@ -165,9 +175,12 @@
               </div>
 
               <div class="d-flex flex-row">
-                <button type="submit" class="btn btn-primary mt-4 roundedBlueButton"
-                  >Book now</button
+                <button
+                  type="submit"
+                  class="btn btn-primary mt-4 roundedBlueButton"
                 >
+                  Book now
+                </button>
               </div>
             </form>
           </div>
@@ -180,6 +193,7 @@
   <Footer></Footer>
 </template>
 <script>
+import axios from "axios";
 import LatestProduct from "@/components/LatestProduct.vue";
 import BlogCardSnippet from "@/components/BlogCardSnippet.vue";
 import Footer from "@/components/Footer.vue";
@@ -198,30 +212,27 @@ export default {
         phone: null,
       },
       services: [],
-
-
     };
   },
   methods: {
     async serviceRequest(e) {
       e.preventDefault();
-      console.log([this.customer,this.services])
-      // axios
-      //   .post(
-      //     "http://127.0.0.1:8000/Administrator/comments",
-      //     {
-      //       comment: this.comment,
-      //     },
-      //     { headers }
-      //   )
-      //   .then((response) => {
-      //     console.log(response.data);
-      //     this.fetchedcomments.unshift(response.data);
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //     // this.errors.push(e)
-      //   });
+      console.log([this.customer, this.services]);
+      axios
+        .post("http://127.0.0.1:8000/services/service/request/", {
+          customer: this.customer,
+          services: this.services,
+        })
+        .then((response) => {
+          console.log(response.data);
+          alert("Dear, " + this.customer.name + ".We have recieved your form");
+          // app.$toast.info('Howdy!');
+        })
+        .catch((e) => {
+          console.log(e);
+          // this.errors.push(e)
+        });
+      this.$refs.servicerequest.reset(); 
     },
   },
 };

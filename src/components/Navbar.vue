@@ -36,7 +36,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"
-              ><router-link to="/store">About Us</router-link></a
+              ><router-link to="/about">About Us</router-link></a
             >
           </li>
         </ul>
@@ -99,8 +99,8 @@
         <i class="fa-solid fa-newspaper"></i>
         <span class="nav__text">Blog</span>
       </a>
-      <a href="#/blog" class="nav__link">
-        <router-link to="#/blog"></router-link>
+      <a href="#/about" class="nav__link">
+        <router-link to="#/about"></router-link>
 
         <i class="fa-solid fa-user-group"></i>
         <span class="nav__text">About us</span>

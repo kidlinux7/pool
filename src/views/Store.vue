@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row align-items-center" >
+    <div class="row align-items-center">
       <div
         class="
           col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12
@@ -99,26 +99,18 @@
       <div class="row">
         <div class="col-sm-12 col-xs-12 col-12 categorySlide">
           <div class="d-flex justify-content-start mt-1">
-            <button
-              type="button"
-              class="btn btn-primary storeCategory" 
-              v-on:click="$store.dispatch('loadStoreProducts')"
+            <div
+              v-for="productcategory in productcategories"
+              v-bind:key="productcategory.id"
             >
-              Apparati
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary storeCategory"
-              v-on:click="$store.dispatch('loadStoreProductsWaterPump')"
-            >
-              WaterPumps
-            </button>
-            <button type="button" class="btn btn-primary storeCategory">
-              Uniforms
-            </button>
-            <button type="button" class="btn btn-primary storeCategory">
-              Chemicals
-            </button>
+              <button
+                type="button"
+                class="btn btn-primary storeCategory"
+                v-on:click="getProductCategoryId([productcategory.id])"
+              >
+                {{ productcategory.name }}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -129,7 +121,6 @@
           col-xxl-3 col-xl-3 col-lg-3
           d-sm-none d-none d-md-none d-lg-block d-xl-block d-xxl-block
         "
-        
       >
         <FilterSection></FilterSection>
         <SideProductList></SideProductList>
@@ -158,16 +149,33 @@ export default {
     Footer,
     SideProductList,
   },
+  methods: {
+    getProductCategoryId(data) {
+      this.$store.dispatch("fetchProductCategory", {
+        id: data[0],
+      });
+    },
+  },
+  mounted() {
+    this.$store.dispatch("loadProductCategories");
+  },
+  computed: {
+    loader() {
+      return this.$store.getters.loader;
+    },
+    productcategories() {
+      return this.$store.getters.productcategories;
+    },
+  },
 };
 </script>
 <style scoped>
-.bigSearch{
+.bigSearch {
   margin-left: 30vw;
   margin-right: 5vw;
-
 }
 
-#fixedSection{
+#fixedSection {
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 160px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */

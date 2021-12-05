@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="m-5">
       <Carousel
         :breakpoints="breakpoints"
         :settings="settings"
@@ -50,7 +50,7 @@
           v-for="latestproduct in latestproducts"
           v-bind:key="latestproduct.id"
         >
-          <!-- <router-link id="routeLink" v-bind:to="'/productdetails/' + latestproduct.id"> -->
+          <router-link id="routeLink" v-bind:to="'/productdetails/' + latestproduct.id">
           <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
           <div
             class="card mx-auto latestProduct carousel__item"
@@ -78,16 +78,16 @@
                     }}</router-link></a
                   > -->
               </h5>
-              <!-- <div>
+              <div>
                   <p class="latestProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
                   <br />
-                </div> -->
+                </div>
               <div>
                 <p class="latestProduct_card_info">
                   Tsh {{ latestproduct.sell_price }}
                 </p>
               </div>
-              <div
+              <!-- <div
                 class="btn btn-primary addToCartBtn"
                 @click="
                   addToCart([
@@ -98,11 +98,11 @@
                 "
               >
                 <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
-              </div>
+              </div> -->
             </div>
           </div>
           <!-- </a> -->
-          <!-- </router-link> -->
+          </router-link>
         </Slide>
       </Carousel>
     </div>
@@ -171,7 +171,12 @@ export default {
 #routeLink {
   text-decoration: none;
 }
-
+.latestProduct:hover {
+  /* border-color: whitesmoke; */
+  padding: 3px;
+  transition: 0.3s ease-in-out;
+  box-shadow: 10px 10px 20px 5px rgb(235, 233, 233);
+}
 .latestProduct_card_category {
   color: rgb(173, 173, 173);
   text-align: left;

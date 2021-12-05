@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div v-else data-aos="fade-in">
+    <div v-else>
       <div class="container-fluid">
         <div class="row mx-auto">
           <div

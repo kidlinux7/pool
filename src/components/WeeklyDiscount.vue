@@ -88,7 +88,7 @@
                 </div> -->
                 <div>
                   <p class="weeklyDiscountProduct_card_info">
-                    {{ weeklydiscountproduct.sell_price }}
+                   Tsh {{ weeklydiscountproduct.sell_price }}
                   </p>
                 </div>
                 <!-- <div class="btn btn-primary addToCartBtn">

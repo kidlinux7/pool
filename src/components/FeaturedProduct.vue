@@ -1,7 +1,48 @@
 <template>
+  <!-- <div class="container-fluid" style="margin-top: 9vh">
+    <div class="row align-items-center">
+      <div
+        class="
+          col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12
+          order-sm-1
+        "
+      >
+        <img
+          src="../assets/construction.jpeg"
+          class="img-fluid poolcareImage p-5"
+          alt="product Image"
+          style="border-radius: 60px"
+        />
+      </div>
+      <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="d-flex flex-column">
+          <h3 class="d-flex justify-content-start" style="font-weight: bold">
+            FEATURED
+          </h3>
+          <p class="d-flex justify-content-start" style="text-align: left">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id nisi
+            purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+            magna magna, congue quis mattis nec, auctor vel ipsum. Etiam ac
+            finibus metus, non tincidunt ipsum. Donec ante sapien, varius at
+            Etiam pulvinar ante eros, ut hendrerit lectus
+          </p>
+        </div>
+      </div>
+    </div>
+  </div> -->
   <div class="container">
     <!-- <div class="row mx-auto mt-5"> -->
     <h3 class="midSectionHeading">Featured Products</h3>
+    <!-- <div class="d-flex justify-content-center mb-5">
+      <div class="col-xxl-6 col-xl-6 col-lg-6">
+        <p class="d-flex justify-content-start" style="text-align: left">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id nisi
+          purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+          magna magna, congu.
+        </p>
+      </div>
+    </div> -->
+
     <div v-if="loader">
       <div class="container">
         <div class="row mx-auto">
@@ -169,6 +210,13 @@ export default {
   font-family: "Poppins", sans;
 }
 
+.featuredProduct:hover {
+  /* border-color: whitesmoke; */
+  padding: 3px;
+  transition: 0.3s ease-in-out;
+  box-shadow: 10px 10px 20px 5px rgb(235, 233, 233);
+}
+
 /* Featured Product Card */
 .featuredProduct_card_category {
   color: rgb(173, 173, 173);
@@ -186,9 +234,14 @@ export default {
   padding: 20px;
 }
 .featuredProduct_card_info {
-  text-align: left;
+  text-align: center;
   font-family: "Poppins", sans;
-  margin-left: 20px;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-top: 10px;
+  color: #0000ff;
+  font-size: 1.3em;
+  font-weight: 900;
 }
 
 .blueNameTag {

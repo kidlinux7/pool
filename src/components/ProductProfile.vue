@@ -141,7 +141,7 @@
         </div>
       </div>
     </div>
-    <div v-else data-aos="fade-out">
+    <div v-else style="transition:0.5s;">
       <div class="row align-items-start productDetails">
         <div
           class="
@@ -250,7 +250,7 @@ export default {
   },
   data() {
     return {
-      baseUrl: "https://0768-169-239-3-230.ngrok.io",
+      baseUrl: "http://127.0.0.1:8000",
       id: this.$route.params.id,
       productprofile: [],
       loader: false,
@@ -261,7 +261,7 @@ export default {
     this.loader = true;
     axios
       .get(
-        "https://0768-169-239-3-230.ngrok.io/inventory/api/product/details?product=" +
+        "http://127.0.0.1:8000/inventory/api/product/details?product=" +
           this.id
       )
       .then((data) => {
