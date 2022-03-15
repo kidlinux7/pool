@@ -11,7 +11,7 @@
             id="floatingInput"
             placeholder="name@example.com"
           />
-          <label for="floatingInput">First name</label>
+          <label for="floatingInput">Full name</label>
         </div>
 
         <div class="form-floating mb-3">

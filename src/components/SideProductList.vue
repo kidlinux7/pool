@@ -39,7 +39,7 @@
         <div class="row g-0">
           <div class="col-md-4">
             <img
-              :src="this.baseUrl + sideBestSelling.cover_image"
+              :src="innerBaseUrl + sideBestSelling.cover_image"
               class="img-fluid rounded-start"
               alt="..."
             />
@@ -78,7 +78,7 @@
         <div class="row g-0">
           <div class="col-md-4">
             <img
-              :src="this.baseUrl + sideLatest.cover_image"
+              :src="innerBaseUrl + sideLatest.cover_image"
               class="img-fluid rounded-start"
               alt="..."
             />
@@ -99,12 +99,6 @@
 <script>
 export default {
   name: "SideProductList",
-  data(){
-    return{
-      baseUrl : 'http://127.0.0.1:8000',
-
-    }
-  },
   mounted() {
     this.$store.dispatch("loadSideStoreBestSellingProducts");
     this.$store.dispatch("loadSideStoreLatestProducts");
@@ -121,6 +115,9 @@ export default {
 
     sidestoreproductslatest(){
       return this.$store.getters.sidestoreproductslatest;
+    },
+        innerBaseUrl(){
+      return this.$store.getters.innerBaseUrl;
     }
   },
 };

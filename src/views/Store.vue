@@ -87,7 +87,7 @@
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
-              <i class="fa-solid fa-sliders"></i>
+              <i class="fa-solid fa-search"></i>
             </button>
           </div>
         </div>
@@ -96,9 +96,20 @@
       <div class="d-flex align-items-start">
         <h6 style="font-weight: bold">Categories</h6>
       </div>
+
       <div class="row">
         <div class="col-sm-12 col-xs-12 col-12 categorySlide">
-          <div class="d-flex justify-content-start mt-1">
+          <div v-if="loader">
+            <div class="d-flex justify-content-start mt-1">
+              <div v-for="index in 5" :key="index">
+                <div
+                  class="skeleton skeleton-line mx-auto"
+                  style="--l-h: 30px; --c-w: 100px; --lines: 1; --t: 1.8s"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div v-else>
             <div
               v-for="productcategory in productcategories"
               v-bind:key="productcategory.id"

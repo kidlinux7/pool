@@ -2,9 +2,13 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" style="font-weight: 800" href="#"
-        ><router-link to="/">💦Pool</router-link></a
+        ><router-link to="/"
+          ><img
+            src="../assets/android-chrome-192x192.png"
+            style="height: 22px; width: 22px; padding: 1px"
+          />Pool</router-link
+        ></a
       >
-
       <div
         class="
           collapse
@@ -50,11 +54,23 @@
         aria-controls="offcanvasRight"
       >
         <i style="color: grey" class="fa-solid fa-cart-shopping"></i>
-   
-        <span class="position-absolute top-0 start-100 translate-middle p-2 redDot ">
-         <h6 style="color:white;font-weight:bold;font-size:0.7em;margin-bottom:10px;"> {{cartItemCount}} </h6>
-  </span>
+
+        <span
+          class="position-absolute top-0 start-100 translate-middle p-2 redDot"
+        >
+          <h6
+            style="
+              color: white;
+              font-weight: bold;
+              font-size: 0.7em;
+              margin-bottom: 10px;
+            "
+          >
+            {{ cartItemCount }}
+          </h6>
+        </span>
       </button>
+      
       <div
         class="offcanvas offcanvas-end"
         tabindex="-1"
@@ -82,28 +98,28 @@
       <a class="nav__link" href="/"
         ><router-link to="/"></router-link>
         <i class="fa-solid fa-house"></i>
-        <span class="nav__text">Home</span>
+        <span class="nav__text"></span>
       </a>
       <a class="nav__link" href="#/store">
         <router-link to="#/store"></router-link>
         <i class="fa-solid fa-shop"></i>
-        <span class="nav__text">Store</span>
+        <span class="nav__text"></span>
       </a>
       <a href="#/poolcare" class="nav__link">
         <router-link to="#/poolcare"></router-link>
         <i class="fa-solid fa-circle-dot"></i>
-        <span class="nav__text">Pool Care</span>
+        <span class="nav__text"> </span>
       </a>
       <a href="#/blog" class="nav__link">
         <router-link to="#/blog"></router-link>
         <i class="fa-solid fa-newspaper"></i>
-        <span class="nav__text">Blog</span>
+        <span class="nav__text"></span>
       </a>
       <a href="#/about" class="nav__link">
         <router-link to="#/about"></router-link>
 
         <i class="fa-solid fa-user-group"></i>
-        <span class="nav__text">About us</span>
+        <span class="nav__text"> </span>
       </a>
     </nav>
   </div>
@@ -112,36 +128,36 @@
 import Cart from "@/components/Cart.vue";
 export default {
   name: "Navbar",
-  components:{
-    Cart
+  components: {
+    Cart,
   },
-  computed:{
-    cartItemCount(){
-      return this.$store.getters.cartItemCount
-    }
-  }
+  computed: {
+    cartItemCount() {
+      return this.$store.getters.cartItemCount;
+    },
+  },
 };
 </script>
 <style scoped>
-.redDot{
+.redDot {
   height: 25px;
   width: 25px;
   background-color: red;
   border-radius: 50px;
   margin-top: 5px;
-  
 }
 .router-link-active {
   color: rgb(143, 143, 143);
 }
+
 .nav_ {
+  /* margin: 10px; */
   position: fixed;
   bottom: 0px;
-  border-radius: 0px;
+  /* border-radius: 15px; */
   width: 100%;
   height: 65px;
-
-  background-color: #f4f4f8;
+  background-color: #2424fc;
   display: flex;
   overflow-x: auto;
   z-index: 100;
@@ -153,24 +169,25 @@ export default {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  min-width: 50px;
+  min-width: 60px;
   overflow: hidden;
   white-space: nowrap;
   font-family: "Poppins";
-  font-size: 13px;
+  font-size: 18px;
 
-  color: #5732ffce;
+  color: white;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   transition: 0.1s ease-in-out;
 }
 
 .nav__link:hover {
-  background-color: #eeeeee;
+  background-color: #2424fc;
 }
 
 .nav__link--active {
-  color: #009578;
+  color: #2424fc;
+
 }
 
 .nav__icon {
@@ -184,7 +201,8 @@ a {
   color: grey;
   text-decoration: grey;
 }
-a:active {
-  color: black;
-}
+/* a:active {
+  color: #00009e;
+  font-size: 19px;
+} */
 </style>

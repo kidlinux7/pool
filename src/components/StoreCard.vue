@@ -36,24 +36,30 @@
             v-for="storeproduct in storeproducts"
             v-bind:key="storeproduct.id"
           >
-          <router-link id="routeLink" v-bind:to="'/productdetails/' + storeproduct.id">
+            <router-link
+              id="routeLink"
+              v-bind:to="'/productdetails/' + storeproduct.id"
+            >
               <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
               <div
                 class="card storeCard carousel__item"
                 style="min-width: 13rem"
               >
-                <img :src="this.baseUrl + storeproduct.cover_image" class="card-img-top" alt="..." />
+                <img
+                  :src="innerBaseUrl + storeproduct.cover_image"
+                  class="card-img-top"
+                  alt="..."
+                />
                 <div class="card-body">
                   <h5 class="storeCard_card_category">
                     {{ storeproduct.category }}
                   </h5>
                   <h5 class="storCard_title card-title">
                     <div v-if="storeproduct.name.length < 15">
-                        <p>{{ storeproduct.name}}</p>
+                      <p>{{ storeproduct.name }}</p>
                     </div>
                     <div v-else>
-                    <p>{{ storeproduct.name.slice(0,15) }}..</p>
-
+                      <p>{{ storeproduct.name.slice(0, 15) }}..</p>
                     </div>
                     <!-- <a href=""
                     ><router-link to="/ProductDetails">{{
@@ -88,12 +94,6 @@
 import "css-skeletons";
 export default {
   name: "StoreCard",
-  data(){
-    return{
-      baseUrl : 'http://127.0.0.1:8000',
-
-    }
-  },
   mounted() {
     this.$store.dispatch("loadStoreProducts");
   },
@@ -104,13 +104,16 @@ export default {
     storeproducts() {
       return this.$store.getters.storeproducts;
     },
+    innerBaseUrl() {
+      return this.$store.getters.innerBaseUrl;
+    },
   },
 };
 </script>
 <style >
 a {
-    color: #0d6efd;
-    text-decoration: none;
+  color: #0d6efd;
+  text-decoration: none;
 }
 .storeCard_card_info {
   color: rgb(150, 150, 150);
@@ -210,7 +213,6 @@ router-link {
     max-width: 14rem !important;
     height: calc(100% - calc(var(--c-p) * 2));
     border-radius: 10px;
-
   }
   .skeleton.skeleton-rect {
     height: calc(
@@ -219,15 +221,62 @@ router-link {
             var(--g-gap)
         ) * clamp(0, var(--lines), 1) + var(--rect-h) + var(--c-p) * 2
     );
-    margin-right: 40px !important;
+    margin-right: 20px !important;
     max-width: 14rem !important;
     align-items: center;
     border-radius: 10px;
-
   }
 }
 
 /* TABLET SIZED DEVICES */
 @media only screen and (max-width: 768px) {
+  .skeleton::after,
+  .skeleton::before {
+    content: "";
+    position: absolute;
+    left: var(--c-p);
+    top: var(--c-p);
+    /* max-width: 15rem !important; */
+    height: calc(100% - calc(var(--c-p) * 2));
+    border-radius: 10px;
+  }
+  .skeleton.skeleton-rect {
+    height: calc(
+      (
+          (var(--l-h) * var(--lines)) + (var(--l-gap) * (var(--lines) - 1)) +
+            var(--g-gap)
+        ) * clamp(0, var(--lines), 1) + var(--rect-h) + var(--c-p) * 2
+    );
+    /* margin-right: 20px !important; */
+    max-width: 15rem !important;
+    align-items: center;
+    border-radius: 10px;
+  }
+}
+
+/* WIDE SCREEN SIZED DEVICES */
+@media only screen and (min-width: 769px) {
+  .skeleton::after,
+  .skeleton::before {
+    content: "";
+    position: absolute;
+    left: var(--c-p);
+    top: var(--c-p);
+    /* max-width: 14rem !important; */
+    height: calc(100% - calc(var(--c-p) * 2));
+    border-radius: 10px;
+  }
+  .skeleton.skeleton-rect {
+    height: calc(
+      (
+          (var(--l-h) * var(--lines)) + (var(--l-gap) * (var(--lines) - 1)) +
+            var(--g-gap)
+        ) * clamp(0, var(--lines), 1) + var(--rect-h) + var(--c-p) * 2
+    );
+    /* margin-right: 10px !important; */
+    max-width: 19rem !important;
+    align-items: center;
+    border-radius: 10px;
+  }
 }
 </style>

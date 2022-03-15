@@ -1,12 +1,14 @@
 import vuex from 'vuex'
 import axios from 'axios'
 
-let baseUrl = 'http://127.0.0.1:8000/'
+let baseUrl = 'https://3c47-41-222-181-223.ngrok.io/'
 let cartItems = window.localStorage.getItem('cartItems')
 let cartItemCount = window.localStorage.getItem('cartItemCount')
 
 export default new vuex.Store({
     state: {
+        
+        innerBaseUrl : 'https://3c47-41-222-181-223.ngrok.io',
 
         loader: false,
         sideLoader: false,
@@ -93,6 +95,9 @@ export default new vuex.Store({
             state.sideLoader = newsideLoader
         },
 
+        SET_INNER_BASE_URL(state, innerBaseUrl){
+            state.innerBaseUrl = innerBaseUrl
+        },
 
         //Fetch Specific Product Category
         SET_PRODUCT_CATEGORY(state,id){
@@ -390,10 +395,15 @@ export default new vuex.Store({
 
         },
 
-
+        loadInnerBaseUrl({commit}){
+            commit('SET_INNER_BASE_URL',innerBaseUrl)
+        }
 
     },
     getters: {
+        innerBaseUrl(state){
+            return state.innerBaseUrl
+        },
         cartItemCount(state) {
             return state.cartItems.length;
         },

@@ -9,27 +9,9 @@
             class="
               col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
             "
-          >
-            <div
-              class="skeleton skeleton-rect mx-auto"
-              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
-            ></div>
-          </div>
-
-          <div
-            class="
-              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
-            "
-          >
-            <div
-              class="skeleton skeleton-rect mx-auto"
-              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
-            ></div>
-          </div>
-          <div
-            class="
-              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
-            "
+            id="shimmer"
+            v-for="index in 3"
+            :key="index"
           >
             <div
               class="skeleton skeleton-rect mx-auto"
@@ -60,7 +42,7 @@
               style="width: 18rem"
             >
               <img
-                :src="this.baseUrl + bestsellingproduct.cover_image"
+                :src="innerBaseUrl + bestsellingproduct.cover_image"
                 class="card-img-top"
                 alt="..."
               />
@@ -88,7 +70,7 @@
                 </div> -->
                 <div>
                   <p class="bestSellingProduct_card_info">
-                   Tsh {{ bestsellingproduct.sell_price }}
+                    Tsh {{ bestsellingproduct.sell_price }}
                   </p>
                 </div>
                 <!-- <div class="btn btn-primary addToCartBtn">
@@ -117,7 +99,6 @@ export default {
   },
   data() {
     return {
-      baseUrl: "http://127.0.0.1:8000",
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -146,6 +127,9 @@ export default {
     },
     bestsellingproducts() {
       return this.$store.getters.bestsellingproducts;
+    },
+    innerBaseUrl() {
+      return this.$store.getters.innerBaseUrl;
     },
   },
 };

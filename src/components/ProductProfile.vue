@@ -150,14 +150,14 @@
         >
           <div class="d-flex flex-column">
             <img
-              :src="baseUrl + productprofile.cover_image"
+              :src="innerBaseUrl + productprofile.cover_image"
               class="img-fluid mainImage m-5"
               alt="product Image"
             />
             <div class="d-flex flex-row" >
               <div class="imgView1"  v-on:click="updateImage(image)" v-for="image in productprofile.product_image" v-bind:key="image">
                 <img
-                  :src="baseUrl + image"
+                  :src="innerBaseUrl + image"
                   class="img-fluid"
                   alt="product Image"
                 
@@ -250,7 +250,6 @@ export default {
   },
   data() {
     return {
-      baseUrl: "http://127.0.0.1:8000",
       id: this.$route.params.id,
       productprofile: [],
       loader: false,
@@ -258,10 +257,11 @@ export default {
   },
 
   mounted() {
+    
     this.loader = true;
     axios
       .get(
-        "http://127.0.0.1:8000/inventory/api/product/details?product=" +
+        this.innerBaseUrl +"/inventory/api/product/details?product=" +
           this.id
       )
       .then((data) => {
@@ -292,6 +292,9 @@ export default {
     loader() {
       return this.$store.getters.loader;
     },
+        innerBaseUrl(){
+      return this.$store.getters.innerBaseUrl;
+    }
   },
 };
 </script>

@@ -219,7 +219,7 @@ export default {
       e.preventDefault();
       console.log([this.customer, this.services]);
       axios
-        .post("http://127.0.0.1:8000/services/service/request/", {
+        .post(this.innerBaseUrl + "/services/service/request/", {
           customer: this.customer,
           services: this.services,
         })
@@ -232,7 +232,12 @@ export default {
           console.log(e);
           // this.errors.push(e)
         });
-      this.$refs.servicerequest.reset(); 
+      this.$refs.servicerequest.reset();
+    },
+  },
+  computed: {
+    innerBaseUrl() {
+      return this.$store.getters.innerBaseUrl;
     },
   },
 };

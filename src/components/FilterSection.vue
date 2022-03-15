@@ -3,17 +3,27 @@
     <div class="d-flex flex-column">
       <div class="d-flex flex-column categoryGroup">
         <h4 class="storeCategory">Categories</h4>
-        <div
-          v-for="productcategory in productcategories"
-          v-bind:key="productcategory.id"
-        >
-          <h5
-            style="cursor: pointer"
-            class="storeCategoryList"
-            v-on:click="getProductCategoryId([productcategory.id])"
+        <div v-if="loader">
+          <div
+            v-for="index in 5"
+            :key="index"
+            class="skeleton skeleton-line mx-auto"
+            style="--l-h: 30px; --c-w: 200px; --lines: 1; --t: 1.8s"
+          ></div>
+        </div>
+        <div v-else>
+          <div
+            v-for="productcategory in productcategories"
+            v-bind:key="productcategory.id"
           >
-            {{ productcategory.name }}
-          </h5>
+            <h5
+              style="cursor: pointer"
+              class="storeCategoryList"
+              v-on:click="getProductCategoryId([productcategory.id])"
+            >
+              {{ productcategory.name }}
+            </h5>
+          </div>
         </div>
       </div>
     </div>
@@ -34,6 +44,7 @@ export default {
   mounted() {
     this.$store.dispatch("loadProductCategories");
   },
+
   computed: {
     loader() {
       return this.$store.getters.loader;

@@ -1,48 +1,7 @@
 <template>
-  <!-- <div class="container-fluid" style="margin-top: 9vh">
-    <div class="row align-items-center">
-      <div
-        class="
-          col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12
-          order-sm-1
-        "
-      >
-        <img
-          src="../assets/construction.jpeg"
-          class="img-fluid poolcareImage p-5"
-          alt="product Image"
-          style="border-radius: 60px"
-        />
-      </div>
-      <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-        <div class="d-flex flex-column">
-          <h3 class="d-flex justify-content-start" style="font-weight: bold">
-            FEATURED
-          </h3>
-          <p class="d-flex justify-content-start" style="text-align: left">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id nisi
-            purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            magna magna, congue quis mattis nec, auctor vel ipsum. Etiam ac
-            finibus metus, non tincidunt ipsum. Donec ante sapien, varius at
-            Etiam pulvinar ante eros, ut hendrerit lectus
-          </p>
-        </div>
-      </div>
-    </div>
-  </div> -->
   <div class="container">
     <!-- <div class="row mx-auto mt-5"> -->
     <h3 class="midSectionHeading">Featured Products</h3>
-    <!-- <div class="d-flex justify-content-center mb-5">
-      <div class="col-xxl-6 col-xl-6 col-lg-6">
-        <p class="d-flex justify-content-start" style="text-align: left">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id nisi
-          purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-          magna magna, congu.
-        </p>
-      </div>
-    </div> -->
-
     <div v-if="loader">
       <div class="container">
         <div class="row mx-auto">
@@ -50,27 +9,9 @@
             class="
               col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
             "
-          >
-            <div
-              class="skeleton skeleton-rect mx-auto"
-              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
-            ></div>
-          </div>
-
-          <div
-            class="
-              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
-            "
-          >
-            <div
-              class="skeleton skeleton-rect mx-auto"
-              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
-            ></div>
-          </div>
-          <div
-            class="
-              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
-            "
+            id="shimmer"
+            v-for="index in 3"
+            :key="index"
           >
             <div
               class="skeleton skeleton-rect mx-auto"
@@ -101,7 +42,7 @@
               style="width: 18rem"
             >
               <img
-                :src="this.baseUrl + featuredproduct.cover_image"
+                :src="innerBaseUrl + featuredproduct.cover_image"
                 class="card-img-top"
                 alt="..."
               />
@@ -158,7 +99,6 @@ export default {
   },
   data() {
     return {
-      baseUrl: "http://127.0.0.1:8000",
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -187,6 +127,9 @@ export default {
     },
     featuredproducts() {
       return this.$store.getters.featuredproducts;
+    },
+    innerBaseUrl() {
+      return this.$store.getters.innerBaseUrl;
     },
   },
 };

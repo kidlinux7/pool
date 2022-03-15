@@ -7,7 +7,7 @@
             <div class="row g-0 justify-content-between">
               <div class="col-md-2 col-sm-2 col-xs-2 col-2">
                 <img
-                  :src="this.baseUrl + item.image"
+                  :src="innerBaseUrl + item.image"
                   class="img-fluid rounded-start"
                   alt="..."
                 />
@@ -97,11 +97,6 @@
 <script>
 export default {
   name: "Cart",
-  data(){
-    return {
-      baseUrl: "http://127.0.0.1:8000",
-    }
-  },
   computed: {
     cartItems() {
       return this.$store.state.cartItems;
@@ -109,6 +104,9 @@ export default {
     cartTotalPrice() {
       return this.$store.getters.cartTotalPrice;
     },
+        innerBaseUrl(){
+      return this.$store.getters.innerBaseUrl;
+    }
   },
   methods: {
     removeFromCart(data) {

@@ -9,27 +9,9 @@
             class="
               col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
             "
-          >
-            <div
-              class="skeleton skeleton-rect mx-auto"
-              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
-            ></div>
-          </div>
-
-          <div
-            class="
-              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
-            "
-          >
-            <div
-              class="skeleton skeleton-rect mx-auto"
-              style="--rect-h: 400px; --lines: 2; --t: 0.6s"
-            ></div>
-          </div>
-          <div
-            class="
-              col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12
-            "
+            id="shimmer"
+            v-for="index in 3"
+            :key="index"
           >
             <div
               class="skeleton skeleton-rect mx-auto"
@@ -50,44 +32,47 @@
           v-for="latestproduct in latestproducts"
           v-bind:key="latestproduct.id"
         >
-          <router-link id="routeLink" v-bind:to="'/productdetails/' + latestproduct.id">
-          <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
-          <div
-            class="card mx-auto latestProduct carousel__item"
-            style="width: 18rem"
+          <router-link
+            id="routeLink"
+            v-bind:to="'/productdetails/' + latestproduct.id"
           >
-            <img
-              :src="this.baseUrl + latestproduct.cover_image"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="latestProduct_card_category">
-                {{ latestproduct.category }}
-              </h5>
-              <h5 class="card-title">
-                <div v-if="latestproduct.name.length < 15">
-                  <p>{{ latestproduct.name }}</p>
-                </div>
-                <div v-else>
-                  <p>{{ latestproduct.name.slice(0, 15) }}..</p>
-                </div>
-                <!-- <a href=""
+            <!-- <a :href="`/productdetails/${latestproduct.id}`" > -->
+            <div
+              class="card mx-auto latestProduct carousel__item"
+              style="width: 18rem"
+            >
+              <img
+                :src="innerBaseUrl + latestproduct.cover_image"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="latestProduct_card_category">
+                  {{ latestproduct.category }}
+                </h5>
+                <h5 class="card-title">
+                  <div v-if="latestproduct.name.length < 15">
+                    <p>{{ latestproduct.name }}</p>
+                  </div>
+                  <div v-else>
+                    <p>{{ latestproduct.name.slice(0, 15) }}..</p>
+                  </div>
+                  <!-- <a href=""
                     ><router-link to="/ProductDetails">{{
                       
                     }}</router-link></a
                   > -->
-              </h5>
-              <div>
+                </h5>
+                <div>
                   <p class="latestProduct_card_ratingStars">⭐⭐⭐⭐⭐</p>
                   <br />
                 </div>
-              <div>
-                <p class="latestProduct_card_info">
-                  Tsh {{ latestproduct.sell_price }}
-                </p>
-              </div>
-              <!-- <div
+                <div>
+                  <p class="latestProduct_card_info">
+                    Tsh {{ latestproduct.sell_price }}
+                  </p>
+                </div>
+                <!-- <div
                 class="btn btn-primary addToCartBtn"
                 @click="
                   addToCart([
@@ -99,9 +84,9 @@
               >
                 <i class="fa-solid fa-cart-plus px-2"> </i>Add to cart
               </div> -->
+              </div>
             </div>
-          </div>
-          <!-- </a> -->
+            <!-- </a> -->
           </router-link>
         </Slide>
       </Carousel>
@@ -121,7 +106,6 @@ export default {
   },
   data() {
     return {
-      baseUrl: "http://127.0.0.1:8000",
       settings: {
         itemsToShow: 1,
         snapAlign: "center",
@@ -163,6 +147,9 @@ export default {
     },
     latestproducts() {
       return this.$store.getters.latestproducts;
+    },
+    innerBaseUrl() {
+      return this.$store.getters.innerBaseUrl;
     },
   },
 };
