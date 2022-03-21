@@ -1,14 +1,14 @@
 import vuex from 'vuex'
 import axios from 'axios'
 
-let baseUrl = 'https://3c47-41-222-181-223.ngrok.io/'
+let baseUrl = 'https://pool-dashboard.herokuapp.com/'
 let cartItems = window.localStorage.getItem('cartItems')
 let cartItemCount = window.localStorage.getItem('cartItemCount')
 
 export default new vuex.Store({
     state: {
         
-        innerBaseUrl : 'https://3c47-41-222-181-223.ngrok.io',
+        innerBaseUrl : 'https://pool-dashboard.herokuapp.com',
 
         loader: false,
         sideLoader: false,
